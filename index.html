@@ -3,2688 +3,762 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>OBU Student Union - Oda Bultum University</title>
+    <title>OBUSU – Oda Bultum University Student Union | Official Portal</title>
+    <meta name="description" content="Official website of Oda Bultum University Student Union. Register, access member services, and stay connected with campus life.">
+    <meta name="keywords" content="OBUSU, Oda Bultum University, Student Union, Ethiopian University, Student Portal">
+    <meta name="author" content="OBUSU IT Department">
+    
+    <!-- Font Awesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
-    <style>
-        /* ===== CSS RESET & VARIABLES ===== */
-        :root {
-            --primary-green: #1a5f23;
-            --secondary-green: #2e7d32;
-            --light-green: #4caf50;
-            --lighter-green: #e8f5e9;
-            --white: #ffffff;
-            --light-gray: #f5f5f5;
-            --medium-gray: #e0e0e0;
-            --dark-gray: #333333;
-            --text-dark: #222222;
-            --text-light: #666666;
-            --shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-            --shadow-hover: 0 8px 24px rgba(0, 0, 0, 0.12);
-            --border-radius: 8px;
-            --transition: all 0.3s ease;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            font-family: 'Roboto', sans-serif;
-            color: var(--text-dark);
-            background-color: var(--white);
-            line-height: 1.6;
-        }
-
-        h1, h2, h3, h4, h5 {
-            font-family: 'Poppins', sans-serif;
-            font-weight: 600;
-            margin-bottom: 1rem;
-            color: var(--primary-green);
-        }
-
-        a {
-            text-decoration: none;
-            color: inherit;
-        }
-
-        .container {
-            width: 100%;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        .btn {
-            display: inline-block;
-            padding: 12px 28px;
-            background-color: var(--primary-green);
-            color: var(--white);
-            border: none;
-            border-radius: var(--border-radius);
-            font-weight: 500;
-            cursor: pointer;
-            transition: var(--transition);
-            text-align: center;
-            font-size: 1rem;
-        }
-
-        .btn:hover {
-            background-color: var(--secondary-green);
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-hover);
-        }
-
-        .btn-secondary {
-            background-color: transparent;
-            border: 2px solid var(--primary-green);
-            color: var(--primary-green);
-        }
-
-        .btn-secondary:hover {
-            background-color: var(--lighter-green);
-        }
-
-        .section-title {
-            text-align: center;
-            margin-bottom: 3rem;
-            position: relative;
-            padding-bottom: 15px;
-        }
-
-        .section-title:after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80px;
-            height: 4px;
-            background-color: var(--light-green);
-            border-radius: 2px;
-        }
-
-        .card {
-            background: var(--white);
-            border-radius: var(--border-radius);
-            box-shadow: var(--shadow);
-            padding: 25px;
-            transition: var(--transition);
-        }
-
-        .card:hover {
-            transform: translateY(-5px);
-            box-shadow: var(--shadow-hover);
-        }
-
-        /* ===== HEADER & NAVIGATION ===== */
-        header {
-            background-color: var(--white);
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-        }
-
-        .header-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 15px 20px;
-        }
-
-        .logo-container {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-
-        .logo-icon {
-            width: 50px;
-            height: 50px;
-            background-color: var(--primary-green);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--white);
-            font-size: 24px;
-            font-weight: bold;
-        }
-
-        .logo-text h1 {
-            font-size: 1.5rem;
-            margin-bottom: 5px;
-            color: var(--primary-green);
-        }
-
-        .logo-text p {
-            font-size: 0.85rem;
-            color: var(--text-light);
-        }
-
-        nav {
-            display: flex;
-            align-items: center;
-        }
-
-        .nav-links {
-            display: flex;
-            list-style: none;
-            gap: 25px;
-        }
-
-        .nav-links a {
-            font-weight: 500;
-            color: var(--dark-gray);
-            transition: var(--transition);
-            position: relative;
-            padding: 5px 0;
-        }
-
-        .nav-links a:hover {
-            color: var(--primary-green);
-        }
-
-        .nav-links a.active {
-            color: var(--primary-green);
-            font-weight: 600;
-        }
-
-        .nav-links a.active:after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 100%;
-            height: 3px;
-            background-color: var(--primary-green);
-            border-radius: 2px;
-        }
-
-        .auth-buttons {
-            display: flex;
-            gap: 15px;
-            margin-left: 30px;
-        }
-
-        .menu-toggle {
-            display: none;
-            font-size: 1.5rem;
-            cursor: pointer;
-            color: var(--primary-green);
-        }
-
-        /* ===== HERO SECTION ===== */
-        .hero {
-            background: linear-gradient(rgba(26, 95, 35, 0.9), rgba(46, 125, 50, 0.9)), url('https://images.unsplash.com/photo-1562774053-701939374585?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2064&q=80');
-            background-size: cover;
-            background-position: center;
-            color: var(--white);
-            padding: 100px 20px;
-            text-align: center;
-        }
-
-        .hero-content {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .hero h1 {
-            font-size: 3rem;
-            margin-bottom: 20px;
-            color: var(--white);
-        }
-
-        .hero p {
-            font-size: 1.2rem;
-            margin-bottom: 30px;
-            opacity: 0.9;
-        }
-
-        .hero-buttons {
-            display: flex;
-            gap: 20px;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-
-        /* ===== MISSION SECTION ===== */
-        .mission {
-            padding: 80px 20px;
-            background-color: var(--lighter-green);
-        }
-
-        .mission-content {
-            max-width: 800px;
-            margin: 0 auto;
-            text-align: center;
-        }
-
-        .mission h2 {
-            font-size: 2.2rem;
-            margin-bottom: 25px;
-        }
-
-        .mission p {
-            font-size: 1.1rem;
-            color: var(--text-dark);
-        }
-
-        /* ===== QUICK LINKS ===== */
-        .quick-links {
-            padding: 80px 20px;
-        }
-
-        .links-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 25px;
-            margin-top: 40px;
-        }
-
-        .link-card {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-            padding: 30px 20px;
-        }
-
-        .link-icon {
-            width: 70px;
-            height: 70px;
-            background-color: var(--lighter-green);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 20px;
-            color: var(--primary-green);
-            font-size: 28px;
-        }
-
-        /* ===== ANNOUNCEMENTS & EVENTS ===== */
-        .announcements-events {
-            padding: 80px 20px;
-            background-color: var(--light-gray);
-        }
-
-        .content-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-        }
-
-        .announcement-item, .event-item {
-            border-left: 4px solid var(--primary-green);
-            padding-left: 20px;
-            margin-bottom: 20px;
-            padding-bottom: 20px;
-            border-bottom: 1px solid var(--medium-gray);
-        }
-
-        .announcement-item:last-child, .event-item:last-child {
-            border-bottom: none;
-        }
-
-        .announcement-date, .event-date {
-            font-size: 0.9rem;
-            color: var(--text-light);
-            margin-bottom: 8px;
-        }
-
-        /* ===== PAGE CONTENT ===== */
-        .page-content {
-            padding: 60px 20px;
-            min-height: 70vh;
-        }
-
-        .page-header {
-            margin-bottom: 40px;
-            padding-bottom: 20px;
-            border-bottom: 1px solid var(--medium-gray);
-        }
-
-        /* ===== SERVICES PAGE ===== */
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-        }
-
-        .service-card {
-            padding: 30px;
-        }
-
-        .service-icon {
-            font-size: 40px;
-            color: var(--primary-green);
-            margin-bottom: 20px;
-        }
-
-        /* ===== LEADERSHIP PAGE ===== */
-        .leadership-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 30px;
-        }
-
-        .leader-card {
-            text-align: center;
-            padding: 30px 20px;
-        }
-
-        .leader-photo {
-            width: 150px;
-            height: 150px;
-            border-radius: 50%;
-            background-color: var(--medium-gray);
-            margin: 0 auto 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 60px;
-            color: var(--text-light);
-            overflow: hidden;
-        }
-
-        /* ===== CONTACT PAGE ===== */
-        .contact-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 40px;
-        }
-
-        .contact-form .form-group {
-            margin-bottom: 20px;
-        }
-
-        .contact-form label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: 500;
-        }
-
-        .contact-form input,
-        .contact-form select,
-        .contact-form textarea {
-            width: 100%;
-            padding: 12px 15px;
-            border: 1px solid var(--medium-gray);
-            border-radius: var(--border-radius);
-            font-family: 'Roboto', sans-serif;
-            font-size: 1rem;
-            transition: var(--transition);
-        }
-
-        .contact-form input:focus,
-        .contact-form select:focus,
-        .contact-form textarea:focus {
-            outline: none;
-            border-color: var(--primary-green);
-            box-shadow: 0 0 0 2px rgba(26, 95, 35, 0.2);
-        }
-
-        .contact-info {
-            display: flex;
-            flex-direction: column;
-            gap: 25px;
-        }
-
-        .info-item {
-            display: flex;
-            align-items: flex-start;
-            gap: 15px;
-        }
-
-        .info-icon {
-            width: 50px;
-            height: 50px;
-            background-color: var(--lighter-green);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--primary-green);
-            font-size: 20px;
-            flex-shrink: 0;
-        }
-
-        /* ===== LOGIN/REGISTER PAGE ===== */
-        .auth-container {
-            max-width: 500px;
-            margin: 0 auto;
-            padding: 40px;
-            background-color: var(--white);
-            border-radius: var(--border-radius);
-            box-shadow: var(--shadow);
-        }
-
-        .auth-tabs {
-            display: flex;
-            margin-bottom: 30px;
-            border-bottom: 1px solid var(--medium-gray);
-        }
-
-        .auth-tab {
-            flex: 1;
-            text-align: center;
-            padding: 15px;
-            cursor: pointer;
-            font-weight: 500;
-            transition: var(--transition);
-            border-bottom: 3px solid transparent;
-        }
-
-        .auth-tab.active {
-            color: var(--primary-green);
-            border-bottom: 3px solid var(--primary-green);
-        }
-
-        .auth-form {
-            display: none;
-        }
-
-        .auth-form.active {
-            display: block;
-        }
-
-        .form-group {
-            margin-bottom: 20px;
-        }
-
-        /* ===== ADMIN DASHBOARD ===== */
-        .admin-container {
-            display: grid;
-            grid-template-columns: 250px 1fr;
-            gap: 30px;
-        }
-
-        .admin-sidebar {
-            background-color: var(--white);
-            border-radius: var(--border-radius);
-            box-shadow: var(--shadow);
-            padding: 20px;
-        }
-
-        .admin-nav {
-            list-style: none;
-        }
-
-        .admin-nav li {
-            margin-bottom: 10px;
-        }
-
-        .admin-nav a {
-            display: block;
-            padding: 12px 15px;
-            border-radius: var(--border-radius);
-            transition: var(--transition);
-        }
-
-        .admin-nav a:hover,
-        .admin-nav a.active {
-            background-color: var(--lighter-green);
-            color: var(--primary-green);
-        }
-
-        .admin-main {
-            background-color: var(--white);
-            border-radius: var(--border-radius);
-            box-shadow: var(--shadow);
-            padding: 30px;
-        }
-
-        .admin-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 30px;
-            padding-bottom: 20px;
-            border-bottom: 1px solid var(--medium-gray);
-        }
-
-        .data-table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-
-        .data-table th,
-        .data-table td {
-            padding: 15px;
-            text-align: left;
-            border-bottom: 1px solid var(--medium-gray);
-        }
-
-        .data-table th {
-            background-color: var(--lighter-green);
-            color: var(--primary-green);
-            font-weight: 600;
-        }
-
-        .action-btn {
-            padding: 6px 12px;
-            margin-right: 5px;
-            border-radius: 4px;
-            border: none;
-            cursor: pointer;
-            font-weight: 500;
-            transition: var(--transition);
-        }
-
-        .edit-btn {
-            background-color: #ffc107;
-            color: #333;
-        }
-
-        .delete-btn {
-            background-color: #f44336;
-            color: white;
-        }
-
-        /* ===== FOOTER ===== */
-        footer {
-            background-color: var(--primary-green);
-            color: var(--white);
-            padding: 60px 20px 30px;
-            margin-top: 60px;
-        }
-
-        .footer-content {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 40px;
-            margin-bottom: 40px;
-        }
-
-        .footer-column h3 {
-            color: var(--white);
-            font-size: 1.3rem;
-            margin-bottom: 25px;
-        }
-
-        .footer-links {
-            list-style: none;
-        }
-
-        .footer-links li {
-            margin-bottom: 12px;
-        }
-
-        .footer-links a {
-            color: rgba(255, 255, 255, 0.8);
-            transition: var(--transition);
-        }
-
-        .footer-links a:hover {
-            color: var(--white);
-            padding-left: 5px;
-        }
-
-        .social-icons {
-            display: flex;
-            gap: 15px;
-            margin-top: 20px;
-        }
-
-        .social-icon {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background-color: rgba(255, 255, 255, 0.1);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: var(--transition);
-        }
-
-        .social-icon:hover {
-            background-color: var(--light-green);
-            transform: translateY(-3px);
-        }
-
-        .copyright {
-            text-align: center;
-            padding-top: 30px;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            color: rgba(255, 255, 255, 0.7);
-            font-size: 0.9rem;
-        }
-
-        /* ===== MOBILE RESPONSIVENESS ===== */
-        @media (max-width: 992px) {
-            .nav-links, .auth-buttons {
-                display: none;
-            }
-
-            .menu-toggle {
-                display: block;
-            }
-
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-
-            .admin-container {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 2rem;
-            }
-
-            .hero-buttons {
-                flex-direction: column;
-                align-items: center;
-            }
-
-            .btn {
-                width: 100%;
-                max-width: 300px;
-            }
-        }
-
-        @media (max-width: 576px) {
-            .header-container {
-                flex-direction: column;
-                gap: 20px;
-            }
-
-            .logo-text h1 {
-                font-size: 1.3rem;
-            }
-
-            .hero {
-                padding: 70px 20px;
-            }
-
-            .hero h1 {
-                font-size: 1.8rem;
-            }
-        }
-
-        /* ===== UTILITY CLASSES ===== */
-        .hidden {
-            display: none !important;
-        }
-
-        .text-center {
-            text-align: center;
-        }
-
-        .mt-1 { margin-top: 10px; }
-        .mt-2 { margin-top: 20px; }
-        .mt-3 { margin-top: 30px; }
-        .mt-4 { margin-top: 40px; }
-        .mb-1 { margin-bottom: 10px; }
-        .mb-2 { margin-bottom: 20px; }
-        .mb-3 { margin-bottom: 30px; }
-        .mb-4 { margin-bottom: 40px; }
-    </style>
-</head>
-<body>
-    <!-- Header & Navigation -->
-    <header>
-        <div class="container header-container">
-            <div class="logo-container">
-                <div class="logo-icon">OBU</div>
-                <div class="logo-text">
-              
-                    </div>
-                    <h1>Oda Bultum University</h1>
-                    <p>Student Union</p>
-                </div>
-            </div>
-            
-            <nav>
-                <ul class="nav-links">
-                    <li><a href="#home" class="nav-link <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>OBU Student Union - Oda Bultum University</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts for better typography -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
-    <link rel="icon" type="image/x-icon" href="https://img.icons8.com/color/96/000000/university.png">
 </head>
 <body>
-    <!-- Header and Navigation -->
-    <header class="header">
-        <div class="container">
-            <div class="logo-container">
-                <div class="logo">
-                    <i class="fas fa-university"></i>
-                    <div class="logo-text">
-                        <h1>OBU Student Union</h1>
-                        <p>Oda Bultum University</p>
-                    </div>
-                </div>
-                <button class="mobile-menu-btn" aria-label="Toggle menu">
-                    <i class="fas fa-bars"></i>
-                </button>
-            </div>
-            
-            <nav class="navbar">
-                <ul class="nav-list">
-                    <li><a href="#home" class="nav-link active">Home</a></li>
-                    <li><a href="#about" class="nav-link">About Us</a></li>
-                    <li><a href="#services" class="nav-link">Student Services</a></li>
-                    <li><a href="#news" class="nav-link">News & Announcements</a></li>
-                    <li><a href="#events" class="nav-link">Events</a></li>
-                    <li><a href="#clubs" class="nav-link">Clubs & Associations</a></li>
-                    <li><a href="#leadership" class="nav-link">Leadership</a></li>
-                    <li><a href="#contact" class="nav-link">Contact Us</a></li>
-                    <li><a href="login.html" class="nav-link login-btn">Login</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
-
-    <!-- Hero Section -->
-    <section id="home" class="hero">
-        <div class="container">
-            <div class="hero-content">
-                <h2 class="hero-title">Welcome to OBU Student Union</h2>
-                <p class="hero-subtitle">Representing, Supporting, and Empowering Students of Oda Bultum University</p>
-                <div class="hero-buttons">
-                    <a href="#services" class="btn btn-primary">Explore Services</a>
-                    <a href="#news" class="btn btn-secondary">Latest News</a>
-                </div>
-            </div>
-            <div class="hero-image">
-                <div class="image-OBUSU">
-                    <i class="fas fa-users"></i>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Welcome Message -->
-    <section class="welcome-section">
-        <div class="container">
-            <div class="section-header">
-                <h2>Welcome Message</h2>
-                <p>From the President of OBU Student Union</p>
-            </div>
-            <div class="welcome-content">
-                <div class="president-image">
-                    <div class="image-OBUSU">
-                        <i class="fas fa-user-graduate"></i>
-                    </div>
-                </div>
-                <div class="welcome-text">
-                    <h3>Dear Fellow Students,</h3>
-                    <p>It is with great pleasure that I welcome you to the official platform of the Oda Bultum University Student Union. Our mission is to advocate for your rights, enhance your university experience, and foster a vibrant campus community.</p>
-                    <p>This academic year, we're focused on improving academic support services, addressing dormitory concerns, and expanding student welfare initiatives. We encourage every student to actively participate in union activities and share feedback to help us serve you better.</p>
-                    <p class="signature">- Nafri Ahmed<br><span>Student Union President</span></p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Quick Links -->
-    <section class="quick-links">
-        <div class="container">
-            <div class="section-header">
-                <h2>Quick Links</h2>
-                <p>Access important resources and services quickly</p>
-            </div>
-            <div class="links-grid">
-                <a href="#services" class="link-card">
-                    <div class="link-icon">
-                        <i class="fas fa-graduation-cap"></i>
-                    </div>
-                    <h3>Academic Support</h3>
-                    <p>Tutoring, library resources, and academic counseling</p>
-                </a>
-                <a href="#services" class="link-card">
-                    <div class="link-icon">
-                        <i class="fas fa-bed"></i>
-                    </div>
-                    <h3>Dormitory Issues</h3>
-                    <p>Report accommodation problems and request maintenance</p>
-                </a>
-                <a href="#services" class="link-card">
-                    <div class="link-icon">
-                        <i class="fas fa-utensils"></i>
-                    </div>
-                    <h3>Cafeteria Services</h3>
-                    <p>Meal plans, menu updates, and feedback</p>
-                </a>
-                <a href="#services" class="link-card">
-                    <div class="link-icon">
-                        <i class="fas fa-comment-medical"></i>
-                    </div>
-                    <h3>Complaints & Feedback</h3>
-                    <p>Submit concerns and suggestions anonymously</p>
-                </a>
-                <a href="#events" class="link-card">
-                    <div class="link-icon">
-                        <i class="fas fa-calendar-alt"></i>
-                    </div>
-                    <h3>Upcoming Events</h3>
-                    <p>Academic, cultural, and social events calendar</p>
-                </a>
-                <a href="#clubs" class="link-card">
-                    <div class="link-icon">
-                        <i class="fas fa-users"></i>
-                    </div>
-                    <h3>Clubs & Associations</h3>
-                    <p>Join student organizations and interest groups</p>
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Latest Announcements -->
-    <section id="news" class="announcements">
-        <div class="container">
-            <div class="section-header">
-                <h2>Latest Announcements</h2>
-                <p>Important updates from the Student Union</p>
-            </div>
-            <div class="announcements-grid">
-                <div class="announcement-card">
-                    <div class="announcement-badge new">New</div>
-                    <div class="announcement-date">
-                        <span class="day">15</span>
-                        <span class="month">Oct</span>
-                    </div>
-                    <h3>Midterm Examination Schedule</h3>
-                    <p>The midterm examination schedule for all departments has been released. Check the academic portal for your specific timetable.</p>
-                    <a href="#" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
-                </div>
-                <div class="announcement-card">
-                    <div class="announcement-badge">Important</div>
-                    <div class="announcement-date">
-                        <span class="day">12</span>
-                        <span class="month">Oct</span>
-                    </div>
-                    <h3>Student Union Meeting</h3>
-                    <p>Monthly student union meeting will be held this Friday at the main auditorium. All students are welcome to attend and voice concerns.</p>
-                    <a href="#" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
-                </div>
-                <div class="announcement-card">
-                    <div class="announcement-date">
-                        <span class="day">10</span>
-                        <span class="month">Oct</span>
-                    </div>
-                    <h3>Library Extended Hours</h3>
-                    <p>During exam period, the main library will remain open until 11 PM. Additional study spaces have been allocated in Building C.</p>
-                    <a href="#" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
-                </div>
-            </div>
-            <div class="section-footer">
-                <a href="#" class="btn btn-outline">View All Announcements</a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Upcoming Events -->
-    <section id="events" class="events">
-        <div class="container">
-            <div class="section-header">
-                <h2>Upcoming Events</h2>
-                <p>Mark your calendar for these important dates</p>
-            </div>
-            <div class="events-grid">
-                <div class="event-card">
-                    <div class="event-date">
-                        <span class="event-day">20</span>
-                        <span class="event-month">OCT</span>
-                    </div>
-                    <div class="event-details">
-                        <h3>Cultural Festival</h3>
-                        <p class="event-time"><i class="far fa-clock"></i> 10:00 AM - 6:00 PM</p>
-                        <p class="event-location"><i class="fas fa-map-marker-alt"></i> University Main Ground</p>
-                        <p>Annual cultural festival showcasing diverse traditions from all regions of Ethiopia.</p>
-                    </div>
-                    <a href="#" class="event-btn">Register</a>
-                </div>
-                <div class="event-card">
-                    <div class="event-date">
-                        <span class="event-day">25</span>
-                        <span class="event-month">OCT</span>
-                    </div>
-                    <div class="event-details">
-                        <h3>Career Fair 2023</h3>
-                        <p class="event-time"><i class="far fa-clock"></i> 9:00 AM - 4:00 PM</p>
-                        <p class="event-location"><i class="fas fa-map-marker-alt"></i> Business Building</p>
-                        <p>Connect with top employers and explore internship opportunities across various industries.</p>
-                    </div>
-                    <a href="#" class="event-btn">Register</a>
-                </div>
-                <div class="event-card">
-                    <div class="event-date">
-                        <span class="event-day">28</span>
-                        <span class="event-month">OCT</span>
-                    </div>
-                    <div class="event-details">
-                        <h3>Sports Tournament</h3>
-                        <p class="event-time"><i class="far fa-clock"></i> 8:00 AM - 5:00 PM</p>
-                        <p class="event-location"><i class="fas fa-map-marker-alt"></i> University Stadium</p>
-                        <p>Inter-departmental sports tournament featuring football, basketball, and athletics.</p>
-                    </div>
-                    <a href="#" class="event-btn">Register</a>
-                </div>
-            </div>
-            <div class="section-footer">
-                <a href="#" class="btn btn-outline">View All Events</a>
-            </div>
-        </div>
-    </section>
-
-    <!-- About Us Section -->
-    <section id="about" class="about-section">
-        <div class="container">
-            <div class="section-header">
-                <h2>About OBU Student Union</h2>
-                <p>Our mission, vision, and values</p>
-            </div>
-            <div class="about-content">
-                <div class="about-text">
-                    <p>The Oda Bultum University Student Union is the official representative body for all undergraduate and postgraduate students. We work to ensure student interests are represented at all levels of university governance.</p>
-                    <p>Established in 2015 alongside the university, our union has grown to become a vital part of campus life, advocating for student rights, organizing events, and providing essential services.</p>
-                    <div class="about-stats">
-                        <div class="stat">
-                            <h3>15,000+</h3>
-                            <p>Students Represented</p>
-                        </div>
-                        <div class="stat">
-                            <h3>40+</h3>
-                            <p>Clubs & Associations</p>
-                        </div>
-                        <div class="stat">
-                            <h3>12</h3>
-                            <p>Elected Council Members</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="about-image">
-                    <div class="image-OBUSU">
-                        <i class="fas fa-university"></i>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Student Services -->
-    <section id="services" class="services-section">
-        <div class="container">
-            <div class="section-header">
-                <h2>Student Services</h2>
-                <p>Comprehensive support for all student needs</p>
-            </div>
-            <div class="services-grid">
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-book-open"></i>
-                    </div>
-                    <h3>Academic Support</h3>
-                    <ul>
-                        <li>Peer tutoring programs</li>
-                        <li>Writing center assistance</li>
-                        <li>Academic counseling</li>
-                        <li>Library resource guidance</li>
-                    </ul>
-                    <a href="#" class="service-link">Access Services <i class="fas fa-arrow-right"></i></a>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-home"></i>
-                    </div>
-                    <h3>Dormitory Services</h3>
-                    <ul>
-                        <li>Maintenance requests</li>
-                        <li>Room allocation issues</li>
-                        <li>Facility complaints</li>
-                        <li>Safety concerns</li>
-                    </ul>
-                    <a href="#" class="service-link">Report Issues <i class="fas fa-arrow-right"></i></a>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-utensils"></i>
-                    </div>
-                    <h3>Cafeteria Services</h3>
-                    <ul>
-                        <li>Meal plan management</li>
-                        <li>Weekly menu updates</li>
-                        <li>Food quality feedback</li>
-                        <li>Special dietary needs</li>
-                    </ul>
-                    <a href="#" class="service-link">View Services <i class="fas fa-arrow-right"></i></a>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-comments"></i>
-                    </div>
-                    <h3>Complaints & Feedback</h3>
-                    <ul>
-                        <li>Anonymous reporting</li>
-                        <li>Grievance procedures</li>
-                        <li>Suggestion submission</li>
-                        <li>Status tracking</li>
-                    </ul>
-                    <a href="#" class="service-link">Submit Feedback <i class="fas fa-arrow-right"></i></a>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-heart"></i>
-                    </div>
-                    <h3>Student Welfare</h3>
-                    <ul>
-                        <li>Mental health support</li>
-                        <li>Financial aid guidance</li>
-                        <li>Health services</li>
-                        <li>Emergency assistance</li>
-                    </ul>
-                    <a href="#" class="service-link">Get Support <i class="fas fa-arrow-right"></i></a>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-id-card"></i>
-                    </div>
-                    <h3>Student ID Services</h3>
-                    <ul>
-                        <li>ID card replacement</li>
-                        <li>Validation services</li>
-                        <li>Access card issues</li>
-                        <li>Document requests</li>
-                    </ul>
-                    <a href="#" class="service-link">Request Service <i class="fas fa-arrow-right"></i></a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Clubs & Associations -->
-    <section id="clubs" class="clubs-section">
-        <div class="container">
-            <div class="section-header">
-                <h2>Clubs & Associations</h2>
-                <p>Join student-led organizations and expand your campus experience</p>
-            </div>
-            <div class="clubs-grid">
-                <div class="club-card">
-                    <div class="club-icon">
-                        <i class="fas fa-flask"></i>
-                    </div>
-                    <h3>Science Club</h3>
-                    <p>Promoting scientific inquiry and innovation through workshops, experiments, and competitions.</p>
-                    <div class="club-meta">
-                        <span><i class="fas fa-users"></i> 120 members</span>
-                        <span><i class="far fa-calendar"></i> Weekly meetings</span>
-                    </div>
-                </div>
-                <div class="club-card">
-                    <div class="club-icon">
-                        <i class="fas fa-paint-brush"></i>
-                    </div>
-                    <h3>Arts & Culture</h3>
-                    <p>Celebrating cultural diversity through art exhibitions, performances, and cultural exchanges.</p>
-                    <div class="club-meta">
-                        <span><i class="fas fa-users"></i> 85 members</span>
-                        <span><i class="far fa-calendar"></i> Bi-weekly events</span>
-                    </div>
-                </div>
-                <div class="club-card">
-                    <div class="club-icon">
-                        <i class="fas fa-futbol"></i>
-                    </div>
-                    <h3>Sports Society</h3>
-                    <p>Organizing intramural sports, fitness activities, and participation in regional tournaments.</p>
-                    <div class="club-meta">
-                        <span><i class="fas fa-users"></i> 200+ members</span>
-                        <span><i class="far fa-calendar"></i> Daily activities</span>
-                    </div>
-                </div>
-            </div>
-            <div class="section-footer">
-                <a href="#" class="btn btn-outline">View All Clubs</a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Leadership -->
-    <section id="leadership" class="leadership-section">
-        <div class="container">
-            <div class="section-header">
-                <h2>Student Union Leadership</h2>
-                <p>Meet your elected representatives</p>
-            </div>
-            <div class="leadership-grid">
-                <div class="leader-card">
-                    <div class="leader-image">
-                        <div class="image-OBUSU>
-                            <i class="fas fa-user"></i>
-                        </div>
-                    </div>
-                    <h3>Nafri Ahmed</h3>
-                    <p class="leader-role">President</p>
-                    <p class="leader-department">Nursing , 4th Year</p>
-                    <div class="leader-contact">
-                        <a href="mailto:president@obusu.edu.et"><i class="fas fa-envelope"></i></a>
-                        <a href="#"><i class="fab fa-telegram"></i></a>
-                    </div>
-                </div>
-                <div class="leader-card">
-                    <div class="leader-image">
-                        <div class="image-OBUSU">
-                            <i class="fas fa-user"></i>
-                        </div>
-                    </div>
-                    <h3>Badaso Abduramaan</h3>
-                    <p class="leader-role">Vice President</p>
-                    <p Electrical and computer engineering 5th Year</p>
-                    <div class="leader-contact">
-                        <a href="mailto:vicepresident@obusu.edu.et"><i class="fas fa-envelope"></i></a>
-                        <a href="#"><i class="fab fa-telegram"></i></a>
-                    </div>
-                </div>
-                <div class="leader-card">
-                    <div class="leader-image">
-                        <div class="image-OBUSU">
-                            <i class="fas fa-user"></i>
-                        </div>
-                    </div>
-                    <h3 Abrahami Daffaaru</h3>
-                    <p class="leader-role">Secretary General</p>
-                    <p class="leader-department">Law, 3rd Year</p>
-                    <div class="leader-contact">
-                        <a href="mailto:secretary@obusu.edu.et"><i class="fas fa-envelope"></i></a>
-                        <a href="#"><i class="fab fa-telegram"></i></a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact Us -->
-    <section id="contact" class="contact-section">
-        <div class="container">
-            <div class="section-header">
-                <h2>Contact Us</h2>
-                <p>Get in touch with the Student Union</p>
-            </div>
-            <div class="contact-content">
-                <div class="contact-info">
-                    <div class="contact-item">
-                        <div class="contact-icon">
-                            <i class="fas fa-map-marker-alt"></i>
-                        </div>
-                        <div class="contact-text">
-                            <h3>Our Location</h3>
-                            <p>Student Union Building, Main Campus<br>Oda Bultum University, Chiro, Ethiopia</p>
-                        </div>
-                    </div>
-                    <div class="contact-item">
-                        <div class="contact-icon">
-                            <i class="fas fa-phone"></i>
-                        </div>
-                        <div class="contact-text">
-                            <h3>Phone Number</h3>
-                            <p>+25 19 02 32 97 15<br>+251 7 12476482 (Emergency)</p>
-                        </div>
-                    </div>
-                    <div class="contact-item">
-                        <div class="contact-icon">
-                            <i class="fas fa-envelope"></i>
-                        </div>
-                        <div class="contact-text">
-                            <h3>Email Address</h3>
-                            <p>student.union@obu.edu.et<br>support@obusu.edu.et</p>
-                        </div>
-                    </div>
-                    <div class="contact-item">
-                        <div class="contact-icon">
-                            <i class="far fa-clock"></i>
-                        </div>
-                        <div class="contact-text">
-                            <h3>Office Hours</h3>
-                            <p>Monday - Friday: 8:30 AM - 5:30 PM<br>Saturday: 9:00 AM - 1:00 PM</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="contact-form">
-                    <h3>Send Us a Message</h3>
-                    <form id="contactForm">
-                        <div class="form-group">
-                            <input type="text" id="name" placeholder="Your Name" required>
-                        </div>
-                        <div class="form-group">
-                            <input type="email" id="email" placeholder="Your Email" required>
-                        </div>
-                        <div class="form-group">
-                            <input type="text" id="subject" placeholder="Subject" required>
-                        </div>
-                        <div class="form-group">
-                            <select id="category" required>
-                                <option value="" disabled selected>Select Category</option>
-                                <option value="general">General Inquiry</option>
-                                <option value="complaint">Complaint</option>
-                                <option value="suggestion">Suggestion</option>
-                                <option value="service">Service Request</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <textarea id="message" rows="5" placeholder="Your Message" required></textarea>
-                        </div>
-                        <button type="submit" class="btn btn-primary">Send Message</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Login Modal -->
-    <div class="modal" id="loginModal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h2>Student Login</h2>
-                <button class="modal-close">&times;</button>
-            </div>
-            <div class="modal-body">
-                <form id="loginForm">
-                    <div class="form-group">
-                        <label for="studentId">Student ID</label>
-                        <input type="text" id="studentId" placeholder="e.g., OBU/2021/1234" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="password">Password</label>
-                        <input type="password" id="password" placeholder="Enter your password" required>
-                    </div>
-                    <div class="form-options">
-                        <label class="checkbox">
-                            <input type="checkbox"> Remember me
-                        </label>
-                        <a href="#" class="forgot-password">Forgot Password?</a>
-                    </div>
-                    <button type="submit" class="btn btn-primary btn-block">Login</button>
-                </form>
-                <div class="modal-footer">
-                    <p>Don't have an account? <a href="#" class="switch-to-register">Register here</a></p>
-                </div>
-            </div>
-        </div>
+    <!-- Loading Spinner -->
+    <div class="loader-wrapper" id="loader">
+        <div class="loader"></div>
     </div>
 
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <div class="footer-logo">
-                        <i class="fas fa-university"></i>
-                        <div class="footer-logo-text">
-                            <h3>OBU Student Union</h3>
-                            <p>Oda Bultum University</p>
+    <!-- Sticky Navigation Bar -->
+    <header class="header">
+        <nav class="navbar">
+            <div class="nav-container container">
+                <a href="#home" class="logo">
+                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='50' height='50' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='45' fill='%231e6b52'/%3E%3Ctext x='50' y='70' font-size='40' text-anchor='middle' fill='%23ffffff' font-family='Arial'%3EOBU%3C/text%3E%3C/svg%3E" alt="OBUSU Logo" class="logo-img">
+                    <span class="logo-text">OBUSU</span>
+                </a>
+                <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <ul class="nav-menu" id="navMenu">
+                    <li><a href="#home" class="nav-link">Home</a></li>
+                    <li><a href="#about" class="nav-link">About</a></li>
+                    <li><a href="#leadership" class="nav-link">Leadership</a></li>
+                    <li><a href="#services" class="nav-link">Services</a></li>
+                    <li><a href="#events" class="nav-link">Events</a></li>
+                    <li><a href="#news" class="nav-link">News</a></li>
+                    <li><a href="#gallery" class="nav-link">Gallery</a></li>
+                    <li><a href="#resources" class="nav-link">Resources</a></li>
+                    <li><a href="#contact" class="nav-link">Contact</a></li>
+                </ul>
+                <div class="nav-auth">
+                    <a href="#" class="btn btn-outline" id="loginBtn">Login</a>
+                    <a href="#" class="btn btn-primary" id="registerBtn">Register</a>
+                    <div class="user-menu" id="userMenu" style="display: none;">
+                        <img src="https://via.placeholder.com/40x40/1e6b52/ffffff?text=U" alt="User" class="user-avatar">
+                        <span class="user-name" id="userName"></span>
+                        <div class="user-dropdown">
+                            <a href="#" id="dashboardLink">Dashboard</a>
+                            <a href="#" id="profileLink">Profile</a>
+                            <a href="#" id="logoutBtn">Logout</a>
                         </div>
                     </div>
-                    <p class="footer-about">The official representative body for all students of Oda Bultum University, advocating for student rights and enhancing campus life since 2015.</p>
-                    <div class="social-links">
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#"><i class="fab fa-telegram"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-youtube"></i></a>
-                    </div>
-                </div>
-                <div class="footer-section">
-                    <h4>Quick Links</h4>
-                    <ul class="footer-links">
-                        <li><a href="#home">Home</a></li>
-                        <li><a href="#about">About Us</a></li>
-                        <li><a href="#services">Student Services</a></li>
-                        <li><a href="#news">News & Announcements</a></li>
-                        <li><a href="#events">Events Calendar</a></li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h4>Student Services</h4>
-                    <ul class="footer-links">
-                        <li><a href="#services">Academic Support</a></li>
-                        <li><a href="#services">Dormitory Issues</a></li>
-                        <li><a href="#services">Cafeteria Services</a></li>
-                        <li><a href="#services">Complaints & Feedback</a></li>
-                        <li><a href="#services">Student Welfare</a></li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h4>Contact Info</h4>
-                    <ul class="contact-info">
-                        <li><i class="fas fa-map-marker-alt"></i> Student Union Building, OBU Main Campus</li>
-                        <li><i class="fas fa-phone"></i> +251 22 345 6789</li>
-                        <li><i class="fas fa-envelope"></i> student.union@obu.edu.et</li>
-                    </ul>
                 </div>
             </div>
-            <div class="footer-bottom">
-                <p>&copy; 2023 Oda Bultum University Student Union. All rights reserved.</p>
-                <div class="footer-bottom-links">
-                    <a href="#">Privacy Policy</a>
-                    <a href="#">Terms of Service</a>
-                    <a href="admin-dashboard.html">Admin Dashboard</a>
-                </div>
-            </div>
-        </div>
-    </footer>
-
-    <script src="script.js"></script>
-</     <i class="fas fa-users"></i>
-     </div>>
-</html>" data-page="home">Home</a></li>
-                    <li><a href="#about" class="nav-link" data-page="about">About Us</a></li>
-                    <li><a href="#services" class="nav-link" data-page="services">Student Services</a></li>
-                    <li><a href="#news" class="nav-link" data-page="news">News</a></li>
-                    <li><a href="#events" class="nav-link" data-page="events">Events</a></li>
-                    <li><a href="#clubs" class="nav-link" data-page="clubs">Clubs</a></li>
-                    <li><a href="#leadership" class="nav-link" data-page="leadership">Leadership</a></li>
-                    <li><a href="#contact" class="nav-link" data-page="contact">Contact</a></li>
-                </ul>
-                
-                <div class="auth-buttons">
-                    <button class="btn btn-secondary" id="loginBtn">Student Login</button>
-                    <button class="btn" id="adminLoginBtn">Admin Login</button>
-                </div>
-            </nav>
-            
-            <div class="menu-toggle" id="menuToggle">
-                <i class="fas fa-bars"></i>
-            </div>
-        </div>
+        </nav>
     </header>
 
-    <!-- Main Content Area (All pages load here) -->
-    <main id="main-content">
-        <!-- Home Page (Default) -->
-        <section id="home-page" class="page">
-            <div class="hero">
-                <div class="container">
-                    <div class="hero-content">
-                        <h1>Welcome to OBU Student Union</h1>
-                        <p>Your voice, your community, your university experience. We represent and serve all students of Oda Bultum University.</p>
-                        <div class="hero-buttons">
-                            <a href="#events" class="btn" data-page="events">View Upcoming Events</a>
-                            <a href="#services" class="btn btn-secondary" data-page="services">Student Services</a>
-                        </div>
+    <main>
+        <!-- Hero Section -->
+        <section id="home" class="hero">
+            <div class="hero-content container">
+                <div class="hero-text">
+                    <h1 class="hero-title">Oda Bultum University <span class="hero-title-small">Student Union (OBUSU)</span></h1>
+                    <p class="hero-subtitle">Empowering Students Through Leadership, Innovation, and Unity</p>
+                    <div class="hero-buttons">
+                        <a href="#about" class="btn btn-primary btn-large">Explore OBUSU</a>
+                        <a href="#membership" class="btn btn-outline-light btn-large">Become a Member</a>
+                    </div>
+                </div>
+                <div class="hero-stats">
+                    <div class="stat-item">
+                        <span class="stat-number" data-target="5000">0</span>
+                        <span class="stat-label">Active Members</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number" data-target="25">0</span>
+                        <span class="stat-label">Student Clubs</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number" data-target="100">0</span>
+                        <span class="stat-label">Annual Events</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number" data-target="15">0</span>
+                        <span class="stat-label">Leadership Positions</span>
                     </div>
                 </div>
             </div>
+        </section>
 
-            <div class="mission">
-                <div class="container">
-                    <div class="mission-content">
-                        <h2>Our Mission</h2>
-                        <p>To represent, advocate for, and empower all students of Oda Bultum University. We strive to enhance the student experience through advocacy, services, and community building, while fostering an environment of academic excellence and personal growth.</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="quick-links">
-                <div class="container">
-                    <h2 class="section-title">Quick Access for Students</h2>
-                    <div class="links-grid">
-                        <div class="card link-card">
-                            <div class="link-icon">
-                                <i class="fas fa-book"></i>
+        <!-- About Section -->
+        <section id="about" class="section about">
+            <div class="container">
+                <h2 class="section-title">About OBUSU</h2>
+                <p class="section-intro">The official representative body for all Oda Bultum University students</p>
+                <div class="about-container">
+                    <div class="about-text">
+                        <div class="about-mission-vision">
+                            <div class="mission-card">
+                                <i class="fas fa-bullseye"></i>
+                                <h3>Our Mission</h3>
+                                <p>To represent and support students while promoting leadership, academic success, and campus engagement through inclusive programs and services.</p>
                             </div>
-                            <h3>Academic Support</h3>
-                            <p>Tutoring, library resources, and academic counseling</p>
+                            <div class="vision-card">
+                                <i class="fas fa-eye"></i>
+                                <h3>Our Vision</h3>
+                                <p>To be the leading student organization that empowers every student to reach their full potential and contribute positively to society.</p>
+                            </div>
                         </div>
-                        <div class="card link-card">
-                            <div class="link-icon">
-                                <i class="fas fa-home"></i>
-                            </div>
-                            <h3>Dormitory Issues</h3>
-                            <p>Report issues and request maintenance</p>
-                        </div>
-                        <div class="card link-card">
-                            <div class="link-icon">
-                                <i class="fas fa-utensils"></i>
-                            </div>
-                            <h3>Cafeteria Services</h3>
-                            <p>Meal plans, menus, and feedback</p>
-                        </div>
-                        <div class="card link-card">
-                            <div class="link-icon">
-                                <i class="fas fa-comments"></i>
-                            </div>
-                            <h3>Complaints & Feedback</h3>
-                            <p>Share your concerns and suggestions</p>
+                        <div class="about-values">
+                            <h3>Core Values</h3>
+                            <ul class="values-list">
+                                <li><i class="fas fa-check-circle"></i> Student-Centered Advocacy</li>
+                                <li><i class="fas fa-check-circle"></i> Transparency & Accountability</li>
+                                <li><i class="fas fa-check-circle"></i> Inclusivity & Diversity</li>
+                                <li><i class="fas fa-check-circle"></i> Academic Excellence</li>
+                                <li><i class="fas fa-check-circle"></i> Community Engagement</li>
+                            </ul>
                         </div>
                     </div>
-                </div>
-            </div>
-
-            <div class="announcements-events">
-                <div class="container">
-                    <div class="content-grid">
-                        <div class="card">
-                            <h2 class="section-title">Latest Announcements</h2>
-                            <div id="announcements-list">
-                                <!-- Dynamic content will be loaded here -->
-                                <div class="announcement-item">
-                                    <div class="announcement-date">May 15, 2023</div>
-                                    <h4>Student Union Election Results</h4>
-                                    <p>The results for the 2023 Student Union elections have been announced. Congratulations to all elected representatives.</p>
-                                </div>
-                                <div class="announcement-item">
-                                    <div class="announcement-date">May 10, 2023</div>
-                                    <h4>Library Extended Hours</h4>
-                                    <p>Main library will have extended hours during final exams period (May 15 - June 10).</p>
-                                </div>
-                            </div>
-                            <a href="#news" class="btn btn-secondary mt-3" data-page="news">View All Announcements</a>
-                        </div>
-                        
-                        <div class="card">
-                            <h2 class="section-title">Upcoming Events</h2>
-                            <div id="events-list">
-                                <!-- Dynamic content will be loaded here -->
-                                <div class="event-item">
-                                    <div class="event-date">May 20, 2023 | 2:00 PM</div>
-                                    <h4>Career Fair 2023</h4>
-                                    <p>Annual career fair with over 50 companies recruiting OBU students.</p>
-                                    <p><strong>Location:</strong> University Main Hall</p>
-                                </div>
-                                <div class="event-item">
-                                    <div class="event-date">May 25, 2023 | 6:00 PM</div>
-                                    <h4>Cultural Night Festival</h4>
-                                    <p>Celebrate the diversity of OBU with food, music, and performances from different cultures.</p>
-                                    <p><strong>Location:</strong> Student Center Plaza</p>
-                                </div>
-                            </div>
-                            <a href="#events" class="btn btn-secondary mt-3" data-page="events">View All Events</a>
+                    <div class="about-image">
+                        <img src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="OBU Students">
+                        <div class="about-stats">
+                            <div><strong>Est. 2015</strong> Student Union</div>
+                            <div><strong>10,000+</strong> Students Represented</div>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Other pages will be dynamically loaded here -->
+        <!-- Leadership Section -->
+        <section id="leadership" class="section leadership">
+            <div class="container">
+                <h2 class="section-title">Student Union Leadership</h2>
+                <p class="section-intro">Meet your elected representatives for the 2025/26 academic year</p>
+                <div class="leadership-grid">
+                    <div class="leader-card">
+                        <div class="leader-img">
+                            <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="President">
+                        </div>
+                        <h3 class="leader-name">Abebe Kebede</h3>
+                        <p class="leader-role">President</p>
+                        <p class="leader-dept">Computer Science, 4th Year</p>
+                        <div class="leader-social">
+                            <a href="#"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                            <a href="#"><i class="fab fa-telegram-plane"></i></a>
+                        </div>
+                    </div>
+                    <div class="leader-card">
+                        <div class="leader-img">
+                            <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Vice President">
+                        </div>
+                        <h3 class="leader-name">Meron Assefa</h3>
+                        <p class="leader-role">Vice President</p>
+                        <p class="leader-dept">Business Administration, 4th Year</p>
+                        <div class="leader-social">
+                            <a href="#"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                            <a href="#"><i class="fab fa-telegram-plane"></i></a>
+                        </div>
+                    </div>
+                    <div class="leader-card">
+                        <div class="leader-img">
+                            <img src="https://randomuser.me/api/portraits/men/46.jpg" alt="Secretary">
+                        </div>
+                        <h3 class="leader-name">Gammachiis Tolosa</h3>
+                        <p class="leader-role">General Secretary</p>
+                        <p class="leader-dept">Law, 3rd Year</p>
+                        <div class="leader-social">
+                            <a href="#"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                            <a href="#"><i class="fab fa-telegram-plane"></i></a>
+                        </div>
+                    </div>
+                    <div class="leader-card">
+                        <div class="leader-img">
+                            <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Treasurer">
+                        </div>
+                        <h3 class="leader-name">Fatuma Hassen</h3>
+                        <p class="leader-role">Treasurer</p>
+                        <p class="leader-dept">Accounting, 3rd Year</p>
+                        <div class="leader-social">
+                            <a href="#"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                            <a href="#"><i class="fab fa-telegram-plane"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="leadership-cta">
+                    <a href="#" class="btn btn-outline">View All Representatives</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Services Section -->
+        <section id="services" class="section services">
+            <div class="container">
+                <h2 class="section-title">Student Services</h2>
+                <p class="section-intro">Comprehensive support for your academic and personal success</p>
+                <div class="services-grid">
+                    <div class="service-card">
+                        <div class="service-icon"><i class="fas fa-gavel"></i></div>
+                        <h3>Student Advocacy</h3>
+                        <p>Legal aid, academic appeals, and representation in university committees.</p>
+                        <a href="#" class="service-link">Learn More <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon"><i class="fas fa-book-open"></i></div>
+                        <h3>Academic Support</h3>
+                        <p>Tutoring, study groups, and academic workshops to help you excel.</p>
+                        <a href="#" class="service-link">Learn More <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon"><i class="fas fa-users"></i></div>
+                        <h3>Clubs & Societies</h3>
+                        <p>Join 25+ student clubs – from robotics to cultural associations.</p>
+                        <a href="#" class="service-link">Learn More <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon"><i class="fas fa-hand-holding-heart"></i></div>
+                        <h3>Student Welfare</h3>
+                        <p>Counseling, health services, and financial aid assistance.</p>
+                        <a href="#" class="service-link">Learn More <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon"><i class="fas fa-briefcase"></i></div>
+                        <h3>Career Services</h3>
+                        <p>Internships, job fairs, and professional development workshops.</p>
+                        <a href="#" class="service-link">Learn More <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon"><i class="fas fa-home"></i></div>
+                        <h3>Housing Assistance</h3>
+                        <p>Dormitory allocations and off-campus housing support.</p>
+                        <a href="#" class="service-link">Learn More <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Events Section -->
+        <section id="events" class="section events">
+            <div class="container">
+                <h2 class="section-title">Upcoming Events</h2>
+                <p class="section-intro">Join us for these exciting activities</p>
+                <div class="events-grid">
+                    <div class="event-card">
+                        <div class="event-date-badge">
+                            <span class="event-day">25</span>
+                            <span class="event-month">MAR</span>
+                        </div>
+                        <img src="https://images.unsplash.com/photo-1540575467065-4c4d2c1d1b1b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Leadership Workshop" class="event-img">
+                        <div class="event-content">
+                            <h3>Student Leadership Workshop</h3>
+                            <p><i class="fas fa-clock"></i> 2:00 PM - 5:00 PM</p>
+                            <p><i class="fas fa-map-marker-alt"></i> Main Hall</p>
+                            <p>Develop essential leadership skills with expert facilitators.</p>
+                            <button class="btn btn-primary event-register" data-event="Leadership Workshop">Register</button>
+                        </div>
+                    </div>
+                    <div class="event-card">
+                        <div class="event-date-badge">
+                            <span class="event-day">10</span>
+                            <span class="event-month">APR</span>
+                        </div>
+                        <img src="https://images.unsplash.com/photo-1523580494863-6f3031224c94?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Innovation Day" class="event-img">
+                        <div class="event-content">
+                            <h3>Campus Innovation Day</h3>
+                            <p><i class="fas fa-clock"></i> 9:00 AM - 6:00 PM</p>
+                            <p><i class="fas fa-map-marker-alt"></i> Engineering Building</p>
+                            <p>Showcase your projects and compete for prizes.</p>
+                            <button class="btn btn-primary event-register" data-event="Innovation Day">Register</button>
+                        </div>
+                    </div>
+                    <div class="event-card">
+                        <div class="event-date-badge">
+                            <span class="event-day">25</span>
+                            <span class="event-month">APR</span>
+                        </div>
+                        <img src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Career Seminar" class="event-img">
+                        <div class="event-content">
+                            <h3>Career Development Seminar</h3>
+                            <p><i class="fas fa-clock"></i> 10:00 AM - 4:00 PM</p>
+                            <p><i class="fas fa-map-marker-alt"></i> Business School</p>
+                            <p>Learn from industry professionals and boost your employability.</p>
+                            <button class="btn btn-primary event-register" data-event="Career Seminar">Register</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="events-calendar-link">
+                    <a href="#" class="btn btn-outline"><i class="fas fa-calendar-alt"></i> View Full Calendar</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- News Section -->
+        <section id="news" class="section news">
+            <div class="container">
+                <h2 class="section-title">Latest News & Announcements</h2>
+                <p class="section-intro">Stay informed about campus updates</p>
+                <div class="news-grid">
+                    <article class="news-card">
+                        <div class="news-category">Elections</div>
+                        <img src="https://images.unsplash.com/photo-1541339907198-0877a9124c6a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Election" class="news-img">
+                        <div class="news-content">
+                            <h3>New Student Council Elected</h3>
+                            <p class="news-meta"><i class="far fa-calendar"></i> March 1, 2025</p>
+                            <p>Congratulations to the newly elected student representatives for the 2025/26 academic year. The inauguration ceremony will be held on March 15.</p>
+                            <a href="#" class="read-more">Read Full Story <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </article>
+                    <article class="news-card">
+                        <div class="news-category">Culture</div>
+                        <img src="https://images.unsplash.com/photo-1533174072545-7a4b6ad7a0c3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Cultural Festival" class="news-img">
+                        <div class="news-content">
+                            <h3>University Cultural Festival 2025</h3>
+                            <p class="news-meta"><i class="far fa-calendar"></i> February 28, 2025</p>
+                            <p>Join us for a vibrant celebration of Ethiopian culture with music, dance, traditional food, and art exhibitions from all regions.</p>
+                            <a href="#" class="read-more">Read Full Story <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </article>
+                    <article class="news-card">
+                        <div class="news-category">Infrastructure</div>
+                        <img src="https://images.unsplash.com/photo-1498243691581-b145c3f54a5a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Campus Development" class="news-img">
+                        <div class="news-content">
+                            <h3>Campus Development Updates</h3>
+                            <p class="news-meta"><i class="far fa-calendar"></i> February 20, 2025</p>
+                            <p>New library wing and student center to be completed by September. Construction is ahead of schedule with modern facilities including a 500-seat auditorium.</p>
+                            <a href="#" class="read-more">Read Full Story <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- Gallery Section -->
+        <section id="gallery" class="section gallery">
+            <div class="container">
+                <h2 class="section-title">Campus Life Gallery</h2>
+                <p class="section-intro">Moments captured from our vibrant community</p>
+                <div class="gallery-grid">
+                    <div class="gallery-item">
+                        <img src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Campus view">
+                        <div class="gallery-overlay">
+                            <span>Main Campus</span>
+                        </div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="https://images.unsplash.com/photo-1541339907198-0877a9124c6a?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Students gathering">
+                        <div class="gallery-overlay">
+                            <span>Student Assembly</span>
+                        </div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Lecture hall">
+                        <div class="gallery-overlay">
+                            <span>Modern Lecture Hall</span>
+                        </div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Event">
+                        <div class="gallery-overlay">
+                            <span>Cultural Night</span>
+                        </div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Study group">
+                        <div class="gallery-overlay">
+                            <span>Study Group</span>
+                        </div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="https://images.unsplash.com/photo-1523580494863-6f3031224c94?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Innovation Day">
+                        <div class="gallery-overlay">
+                            <span>Innovation Day 2024</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Resources Section -->
+        <section id="resources" class="section resources">
+            <div class="container">
+                <h2 class="section-title">Student Resources</h2>
+                <p class="section-intro">Essential tools and information for OBU students</p>
+                <div class="resources-grid">
+                    <div class="resource-card">
+                        <i class="fas fa-file-pdf"></i>
+                        <h3>Constitution</h3>
+                        <p>Student Union Constitution and Bylaws</p>
+                        <a href="#" class="resource-link">Download PDF</a>
+                    </div>
+                    <div class="resource-card">
+                        <i class="fas fa-calendar-alt"></i>
+                        <h3>Academic Calendar</h3>
+                        <p>2025/26 Important dates and deadlines</p>
+                        <a href="#" class="resource-link">View Calendar</a>
+                    </div>
+                    <div class="resource-card">
+                        <i class="fas fa-hand-holding-usd"></i>
+                        <h3>Scholarships</h3>
+                        <p>Available scholarships and how to apply</p>
+                        <a href="#" class="resource-link">Learn More</a>
+                    </div>
+                    <div class="resource-card">
+                        <i class="fas fa-book"></i>
+                        <h3>Library Resources</h3>
+                        <p>Access e-books, journals, and research tools</p>
+                        <a href="#" class="resource-link">Access Portal</a>
+                    </div>
+                    <div class="resource-card">
+                        <i class="fas fa-bus"></i>
+                        <h3>Transportation</h3>
+                        <p>Campus shuttle schedules and routes</p>
+                        <a href="#" class="resource-link">View Schedule</a>
+                    </div>
+                    <div class="resource-card">
+                        <i class="fas fa-phone-alt"></i>
+                        <h3>Emergency Contacts</h3>
+                        <p>Campus security, health center, and hotlines</p>
+                        <a href="#" class="resource-link">View Contacts</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Membership Section -->
+        <section id="membership" class="section membership">
+            <div class="container">
+                <div class="membership-container">
+                    <div class="membership-content">
+                        <h2>Become an OBUSU Member</h2>
+                        <p>Join the official student union and unlock exclusive benefits, voting rights, and access to student services.</p>
+                        <ul class="membership-benefits">
+                            <li><i class="fas fa-check-circle"></i> Vote in student elections</li>
+                            <li><i class="fas fa-check-circle"></i> Access member-only events</li>
+                            <li><i class="fas fa-check-circle"></i> Eligibility for leadership positions</li>
+                            <li><i class="fas fa-check-circle"></i> Discounts at campus partners</li>
+                            <li><i class="fas fa-check-circle"></i> Priority for workshops and seminars</li>
+                        </ul>
+                        <a href="#" class="btn btn-primary btn-large" id="registerNowBtn">Register Now</a>
+                    </div>
+                    <div class="membership-image">
+                        <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Students">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="section contact">
+            <div class="container">
+                <h2 class="section-title">Contact Us</h2>
+                <p class="section-intro">We're here to help. Reach out anytime.</p>
+                <div class="contact-container">
+                    <div class="contact-info">
+                        <div class="contact-card">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <h3>Visit Us</h3>
+                            <p>Student Union Building<br>Oda Bultum University<br>Chiro, Ethiopia</p>
+                        </div>
+                        <div class="contact-card">
+                            <i class="fas fa-phone-alt"></i>
+                            <h3>Call Us</h3>
+                            <p>Office: +251 123 456 789<br>Emergency: +251 987 654 321</p>
+                        </div>
+                        <div class="contact-card">
+                            <i class="fas fa-envelope"></i>
+                            <h3>Email Us</h3>
+                            <p>General: info@obusunion.edu.et<br>Support: help@obusunion.edu.et</p>
+                        </div>
+                        <div class="contact-card">
+                            <i class="fas fa-clock"></i>
+                            <h3>Office Hours</h3>
+                            <p>Mon-Fri: 8:30 AM - 5:00 PM<br>Sat: 9:00 AM - 1:00 PM</p>
+                        </div>
+                    </div>
+                    <form class="contact-form" id="contactForm">
+                        <h3>Send a Message</h3>
+                        <div class="form-group">
+                            <input type="text" id="name" name="name" placeholder="Your Full Name" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" id="email" name="email" placeholder="Your Email Address" required>
+                        </div>
+                        <div class="form-group">
+                            <select id="subject" name="subject" required>
+                                <option value="">Select a Department</option>
+                                <option value="general">General Inquiry</option>
+                                <option value="membership">Membership</option>
+                                <option value="events">Events</option>
+                                <option value="complaint">File a Complaint</option>
+                                <option value="suggestion">Suggestion</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <textarea id="message" name="message" rows="5" placeholder="Your Message" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-block">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </section>
     </main>
 
     <!-- Footer -->
-    <footer>
+    <footer class="footer">
         <div class="container">
-            <div class="footer-content">
-                <div class="footer-column">
-                    <h3>OBU Student Union</h3>
-                    <p>Representing students of Oda Bultum University since 2010. Your voice matters to us.</p>
-                    <div class="social-icons">
-                        <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
-                        <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
-                        <a href="#" class="social-icon"><i class="fab fa-telegram"></i></a>
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='45' fill='%23ffffff'/%3E%3Ctext x='50' y='70' font-size='40' text-anchor='middle' fill='%231e6b52' font-family='Arial'%3EOBU%3C/text%3E%3C/svg%3E" alt="OBUSU" class="footer-logo">
+                    <p>Oda Bultum University Student Union<br>Empowering Students Since 2015</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#about">About Us</a></li>
+                        <li><a href="#leadership">Leadership</a></li>
+                        <li><a href="#services">Services</a></li>
+                        <li><a href="#events">Events</a></li>
+                        <li><a href="#news">News</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>For Students</h4>
+                    <ul>
+                        <li><a href="#" id="footerLogin">Login</a></li>
+                        <li><a href="#" id="footerRegister">Register</a></li>
+                        <li><a href="#">Student Handbook</a></li>
+                        <li><a href="#">FAQs</a></li>
+                        <li><a href="#">Report an Issue</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Follow Us</h4>
+                    <div class="social-links">
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="Telegram"><i class="fab fa-telegram-plane"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                    <div class="newsletter">
+                        <h4>Subscribe to Newsletter</h4>
+                        <form id="newsletterForm">
+                            <input type="email" placeholder="Your Email" required>
+                            <button type="submit"><i class="fas fa-paper-plane"></i></button>
+                        </form>
                     </div>
                 </div>
-                
-                <div class="footer-column">
-                    <h3>Quick Links</h3>
-                    <ul class="footer-links">
-                        <li><a href="#home" data-page="home">Home</a></li>
-                        <li><a href="#about" data-page="about">About Us</a></li>
-                        <li><a href="#services" data-page="services">Student Services</a></li>
-                        <li><a href="#leadership" data-page="leadership">Leadership</a></li>
-                        <li><a href="#contact" data-page="contact">Contact Us</a></li>
-                    </ul>
-                </div>
-                
-                <div class="footer-column">
-                    <h3>Contact Info</h3>
-                    <ul class="footer-links">
-                        <li><i class="fas fa-map-marker-alt"></i> Student Union Building, OBU Main Campus</li>
-                        <li><i class="fas fa-phone"></i> +251 123 456 789</li>
-                        <li><i class="fas fa-envelope"></i> student.union@obu.edu.et</li>
-                        <li><i class="fas fa-clock"></i> Mon-Fri: 8:30 AM - 5:00 PM</li>
-                    </ul>
-                </div>
             </div>
-            
-            <div class="copyright">
-                <p>&copy; 2023 Oda Bultum University Student Union. All rights reserved.</p>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Oda Bultum University Student Union (OBUSU). All rights reserved.</p>
+                <p>Designed with <i class="fas fa-heart"></i> by OBUSU IT Department</p>
             </div>
         </div>
     </footer>
 
-    <!-- Modal for Login/Register -->
-    <div id="authModal" class="hidden" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.7); z-index: 2000; display: flex; align-items: center; justify-content: center;">
-        <div class="auth-container">
-            <div class="auth-tabs">
-                <div class="auth-tab active" id="loginTab">Student Login</div>
-                <div class="auth-tab" id="registerTab">Student Register</div>
-                <div class="auth-tab" id="adminTab">Admin Login</div>
-            </div>
-            
-            <div class="auth-form active" id="loginForm">
+    <!-- Auth Modals -->
+    <div class="modal" id="loginModal">
+        <div class="modal-content">
+            <div class="modal-header">
                 <h2>Student Login</h2>
-                <div class="form-group">
-                    <label for="studentId">Student ID or Email</label>
-                    <input type="text" id="studentId" OBUSU="Enter your student ID or email">
-                </div>
-                <div class="form-group">
-                    <label for="password">Password</label>
-                    <input type="password" id="password" OBUSU="Enter your password">
-                </div>
-                <button class="btn" id="submitLogin">Login</button>
-                <p class="mt-2" id="loginMessage"></p>
+                <button class="modal-close" id="closeLoginModal">&times;</button>
             </div>
-            
-            <div class="auth-form" id="registerForm">
-                <h2>Student Registration</h2>
-                <div class="form-group">
-                    <label for="regName">Full Name</label>
-                    <input type="text" id="regName" OBUSU="Enter your full name">
+            <div class="modal-body">
+                <form id="loginForm">
+                    <div class="form-group">
+                        <label for="loginStudentId">Student ID</label>
+                        <input type="text" id="loginStudentId" placeholder="e.g., OBU2025001" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="loginPassword">Password</label>
+                        <input type="password" id="loginPassword" placeholder="Enter your password" required>
+                    </div>
+                    <div class="form-group remember-forgot">
+                        <label>
+                            <input type="checkbox" id="rememberMe"> Remember me
+                        </label>
+                        <a href="#" id="forgotPassword">Forgot Password?</a>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block">Login</button>
+                </form>
+                <div class="modal-footer">
+                    <p>Don't have an account? <a href="#" id="switchToRegister">Register here</a></p>
+                    <p class="demo-credentials">Demo: Student ID: OBU2025001 / Password: student123</p>
                 </div>
-                <div class="form-group">
-                    <label for="regStudentId">Student ID</label>
-                    <input type="text" id="regStudentId" placeholder=""="Enter your student ID">
-                </div>
-                <div class="form-group">
-                    <label for="regEmail">Email</label>
-                    <input type="email" id="regEmail" placeholder="Enter your email">
-                </div>
-                <div class="form-group">
-                    <label for="regPassword">Password</label>
-                    <input type="password" id="regPassword" placeholder="Create a password">
-                </div>
-                <button class="btn" id="submitRegister">Register</button>
-                <p class="mt-2" id="registerMessage"></p>
             </div>
-            
-            <div class="auth-form" id="adminForm">
-                <h2>Admin Login</h2>
-                <div class="form-group">
-                    <label for="adminUsername">Username</label>
-                    <input type="text" id="adminUsername" placeholder="Enter admin username">
-                </div>
-                <div class="form-group">
-                    <label for="adminPassword">Password</label>
-                    <input type="password" id="adminPassword" placeholder="Enter admin password">
-                </div>
-                <button class="btn" id="submitAdminLogin">Login as Admin</button>
-                <p class="mt-2" id="adminMessage"></p>
-            </div>
-            
-            <button class="btn btn-secondary mt-3" id="closeModal">Close</button>
         </div>
     </div>
 
-    <!-- JavaScript Code -->
-    <script>
-        // ===== APPLICATION STATE & DATA =====
-        const AppState = {
-            currentPage: 'home',
-            currentUser: null,
-            isAdmin: false,
-            announcements: [
-                {
-                    id: 1,
-                    title: "Student Union Election Results",
-                    content: "The results for the 2023 Student Union elections have been announced. Congratulations to all elected representatives.",
-                    date: "2023-05-15",
-                    category: "Elections"
-                },
-                {
-                    id: 2,
-                    title: "Library Extended Hours",
-                    content: "Main library will have extended hours during final exams period (May 15 - June 10).",
-                    date: "2023-05-10",
-                    category: "Academic"
-                },
-                {
-                    id: 3,
-                    title: "Cafeteria Menu Update",
-                    content: "New healthy food options available in the main cafeteria starting next week.",
-                    date: "2023-05-05",
-                    category: "Services"
-                }
-            ],
-            events: [
-                {
-                    id: 1,
-                    title: "Career Fair 2023",
-                    description: "Annual career fair with over 50 companies recruiting OBU students.",
-                    date: "2023-05-20",
-                    time: "2:00 PM",
-                    location: "University Main Hall",
-                    category: "Career"
-                },
-                {
-                    id: 2,
-                    title: "Cultural Night Festival",
-                    description: "Celebrate the diversity of OBU with food, music, and performances from different cultures.",
-                    date: "2023-05-25",
-                    time: "6:00 PM",
-                    location: "Student Center Plaza",
-                    category: "Cultural"
-                },
-                {
-                    id: 3,
-                    title: "Sports Tournament Finals",
-                    description: "Finals for the inter-departmental sports tournament. Come support your department!",
-                    date: "2023-05-30",
-                    time: "4:00 PM",
-                    location: "University Stadium",
-                    category: "Sports"
-                }
-            ],
-            users: [
-                { id: 1, name: "Admin User", username: "admin", password: "admin123", role: "admin" },
-                { id: 2, name: "John Doe", studentId: "OBU001", email: "john@student.obu.edu.et", password: "student123", role: "student" }
-            ],
-            services: [
-                { id: 1, name: "Academic Support", description: "Tutoring, library resources, academic counseling, and workshop sessions.", icon: "fas fa-book" },
-                { id: 2, name: "Dormitory Issues", description: "Report maintenance issues, request repairs, and dormitory allocation assistance.", icon: "fas fa-home" },
-                { id: 3, name: "Cafeteria Services", description: "Meal plans, menu information, dietary accommodations, and feedback submission.", icon: "fas fa-utensils" },
-                { id: 4, name: "Complaints & Feedback", description: "Submit complaints, suggestions, and feedback to improve university services.", icon: "fas fa-comments" },
-                { id: 5, name: "Student Welfare", description: "Health services, counseling, financial aid, and emergency assistance.", icon: "fas fa-heart" },
-                { id: 6, name: "Clubs & Associations", description: "Information about student clubs, registration, and event coordination.", icon: "fas fa-users" }
-            ],
-            leaders: [
-                { id: 1, name: "Mikias Tadele", position: "President", department: "Computer Science", year: "4th Year", bio: "Leading the student union with dedication and vision." },
-                { id: 2, name: "Helen Girma", position: "Vice President", department: "Business Administration", year: "3rd Year", bio: "Focused on student welfare and academic support." },
-                { id: 3, name: "Daniel Kebede", position: "Secretary General", department: "Law", year: "3rd Year", bio: "Managing union communications and records." },
-                { id: 4, name: "Selamawit Tesfaye", position: "Treasurer", department: "Accounting", year: "4th Year", bio: "Overseeing union finances and budgeting." }
-            ],
-            clubs: [
-                { id: 1, name: "Computer Science Club", description: "For students interested in programming, technology, and innovation.", contact: "csclub@obu.edu.et" },
-                { id: 2, name: "Debate Society", description: "Develop public speaking and critical thinking skills through debates.", contact: "debate@obu.edu.et" },
-                { id: 3, name: "Environmental Club", description: "Promote sustainability and environmental awareness on campus.", contact: "greenclub@obu.edu.et" },
-                { id: 4, name: "Cultural Association", description: "Celebrate and share diverse cultural heritage through events.", contact: "culture@obu.edu.et" },
-                { id: 5, name: "Sports Club", description: "Organize intramural sports and promote physical wellness.", contact: "sports@obu.edu.et" },
-                { id: 6, name: "Entrepreneurship Society", description: "Foster entrepreneurial mindset and business skills.", contact: "entrepreneur@obu.edu.et" }
-            ]
-        };
+    <div class="modal" id="registerModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Student Registration</h2>
+                <button class="modal-close" id="closeRegisterModal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="registerForm">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="regFirstName">First Name</label>
+                            <input type="text" id="regFirstName" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="regLastName">Last Name</label>
+                            <input type="text" id="regLastName" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="regStudentId">Student ID</label>
+                        <input type="text" id="regStudentId" placeholder="e.g., OBU2025001" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="regEmail">University Email</label>
+                        <input type="email" id="regEmail" placeholder="you@student.obu.edu.et" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="regDepartment">Department</label>
+                        <select id="regDepartment" required>
+                            <option value="">Select Department</option>
+                            <option value="cs">Computer Science</option>
+                            <option value="eng">Engineering</option>
+                            <option value="bus">Business Administration</option>
+                            <option value="law">Law</option>
+                            <option value="med">Medicine</option>
+                            <option value="agri">Agriculture</option>
+                            <option value="edu">Education</option>
+                            <option value="soc">Social Sciences</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="regYear">Year of Study</label>
+                        <select id="regYear" required>
+                            <option value="">Select Year</option>
+                            <option value="1">1st Year</option>
+                            <option value="2">2nd Year</option>
+                            <option value="3">3rd Year</option>
+                            <option value="4">4th Year</option>
+                            <option value="5">5th Year+</option>
+                        </select>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="regPassword">Password</label>
+                            <input type="password" id="regPassword" placeholder="Min. 8 characters" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="regConfirmPassword">Confirm Password</label>
+                            <input type="password" id="regConfirmPassword" required>
+                        </div>
+                    </div>
+                    <div class="form-group terms">
+                        <label>
+                            <input type="checkbox" id="agreeTerms" required> I agree to the <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>
+                        </label>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block">Register</button>
+                </form>
+                <div class="modal-footer">
+                    <p>Already have an account? <a href="#" id="switchToLogin">Login here</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
 
-        // ===== DOM ELEMENTS =====
-        const elements = {
-            mainContent: document.getElementById('main-content'),
-            authModal: document.getElementById('authModal'),
-            loginBtn: document.getElementById('loginBtn'),
-            adminLoginBtn: document.getElementById('adminLoginBtn'),
-            closeModal: document.getElementById('closeModal'),
-            loginTab: document.getElementById('loginTab'),
-            registerTab: document.getElementById('registerTab'),
-            adminTab: document.getElementById('adminTab'),
-            loginForm: document.getElementById('loginForm'),
-            registerForm: document.getElementById('registerForm'),
-            adminForm: document.getElementById('adminForm'),
-            submitLogin: document.getElementById('submitLogin'),
-            submitRegister: document.getElementById('submitRegister'),
-            submitAdminLogin: document.getElementById('submitAdminLogin'),
-            loginMessage: document.getElementById('loginMessage'),
-            registerMessage: document.getElementById('registerMessage'),
-            adminMessage: document.getElementById('adminMessage'),
-            menuToggle: document.getElementById('menuToggle'),
-            navLinks: document.querySelectorAll('.nav-link'),
-            authButtons: document.querySelector('.auth-buttons')
-        };
-
-        // ===== PAGE TEMPLATES =====
-        const pageTemplates = {
-            // About Us Page
-            about: `
-                <div class="page-content">
-                    <div class="container">
-                        <div class="page-header">
-                            <h1>About OBU Student Union</h1>
-                            <p>Learn about our mission, vision, and what we do for students</p>
+    <!-- User Dashboard Modal -->
+    <div class="modal" id="dashboardModal">
+        <div class="modal-content modal-lg">
+            <div class="modal-header">
+                <h2>Student Dashboard</h2>
+                <button class="modal-close" id="closeDashboardModal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="dashboard-tabs">
+                    <button class="dashboard-tab active" data-tab="profile">Profile</button>
+                    <button class="dashboard-tab" data-tab="events">My Events</button>
+                    <button class="dashboard-tab" data-tab="membership">Membership</button>
+                    <button class="dashboard-tab" data-tab="complaints">Complaints</button>
+                    <button class="dashboard-tab" data-tab="settings">Settings</button>
+                </div>
+                <div class="dashboard-content">
+                    <div class="dashboard-pane active" id="profilePane">
+                        <h3>Profile Information</h3>
+                        <div class="profile-info" id="profileInfo">
+                            <!-- Filled by JS -->
                         </div>
-                        
-                        <div class="card mb-4">
-                            <h2>Who We Are</h2>
-                            <p>The Oda Bultum University Student Union is the official representative body for all students at OBU. Established in 2010, we have been advocating for student rights, enhancing campus life, and serving as a bridge between students and university administration.</p>
+                        <button class="btn btn-outline" id="editProfileBtn">Edit Profile</button>
+                    </div>
+                    <div class="dashboard-pane" id="eventsPane">
+                        <h3>My Registered Events</h3>
+                        <div id="registeredEvents" class="registered-events-list">
+                            <p>No events registered yet.</p>
                         </div>
-                        
-                        <div class="card mb-4">
-                            <h2>Our Vision</h2>
-                            <p>To create a vibrant, inclusive, and empowering university experience where every student can thrive academically, socially, and personally.</p>
+                    </div>
+                    <div class="dashboard-pane" id="membershipPane">
+                        <h3>Membership Status</h3>
+                        <div class="membership-status" id="membershipStatus">
+                            <!-- Filled by JS -->
                         </div>
-                        
-                        <div class="card mb-4">
-                            <h2>What We Do</h2>
-                            <div class="services-grid mt-3">
-                                <div class="service-card">
-                                    <div class="service-icon"><i class="fas fa-bullhorn"></i></div>
-                                    <h3>Student Advocacy</h3>
-                                    <p>Represent student interests in university committees and decision-making processes.</p>
-                                </div>
-                                <div class="service-card">
-                                    <div class="service-icon"><i class="fas fa-calendar-alt"></i></div>
-                                    <h3>Event Organization</h3>
-                                    <p>Coordinate academic, cultural, and social events throughout the academic year.</p>
-                                </div>
-                                <div class="service-card">
-                                    <div class="service-icon"><i class="fas fa-handshake"></i></div>
-                                    <h3>Support Services</h3>
-                                    <p>Provide resources and assistance for academic, personal, and financial challenges.</p>
-                                </div>
+                    </div>
+                    <div class="dashboard-pane" id="complaintsPane">
+                        <h3>Submit a Complaint</h3>
+                        <form id="complaintForm">
+                            <div class="form-group">
+                                <select id="complaintType" required>
+                                    <option value="">Select Type</option>
+                                    <option value="academic">Academic Issue</option>
+                                    <option value="housing">Housing/Dormitory</option>
+                                    <option value="service">Student Service</option>
+                                    <option value="other">Other</option>
+                                </select>
                             </div>
-                        </div>
-                    </div>
-                </div>
-            `,
-
-            // Student Services Page
-            services: `
-                <div class="page-content">
-                    <div class="container">
-                        <div class="page-header">
-                            <h1>Student Services</h1>
-                            <p>Comprehensive support services for all OBU students</p>
-                        </div>
-                        
-                        <div class="services-grid">
-                            ${AppState.services.map(service => `
-                                <div class="card service-card">
-                                    <div class="service-icon"><i class="${service.icon}"></i></div>
-                                    <h3>${service.name}</h3>
-                                    <p>${service.description}</p>
-                                    <button class="btn mt-2" onclick="showServiceDetail(${service.id})">Learn More</button>
-                                </div>
-                            `).join('')}
-                        </div>
-                        
-                        <div class="card mt-4">
-                            <h2>How to Access Services</h2>
-                            <p>Most services can be accessed through our office in the Student Union Building. Some services also offer online submission through this portal. Log in to access personalized services and submit requests.</p>
-                            <div class="mt-3">
-                                <button class="btn" id="serviceLoginBtn">Login to Access Services</button>
+                            <div class="form-group">
+                                <textarea id="complaintMessage" rows="4" placeholder="Describe your issue" required></textarea>
                             </div>
-                        </div>
+                            <button type="submit" class="btn btn-primary">Submit Complaint</button>
+                        </form>
+                        <div id="complaintHistory"></div>
                     </div>
-                </div>
-            `,
-
-            // News & Announcements Page
-            news: `
-                <div class="page-content">
-                    <div class="container">
-                        <div class="page-header">
-                            <h1>News & Announcements</h1>
-                            <p>Latest updates from the Student Union and University</p>
-                            ${AppState.isAdmin ? '<button class="btn" id="addAnnouncementBtn"><i class="fas fa-plus"></i> Add Announcement</button>' : ''}
-                        </div>
-                        
-                        <div id="announcements-container">
-                            ${AppState.announcements.map(announcement => `
-                                <div class="card mb-3 announcement-card" data-id="${announcement.id}">
-                                    <div class="announcement-date">${formatDate(announcement.date)} | ${announcement.category}</div>
-                                    <h3>${announcement.title}</h3>
-                                    <p>${announcement.content}</p>
-                                    ${AppState.isAdmin ? `
-                                        <div class="mt-3">
-                                            <button class="action-btn edit-btn" onclick="editAnnouncement(${announcement.id})"><i class="fas fa-edit"></i> Edit</button>
-                                            <button class="action-btn delete-btn" onclick="deleteAnnouncement(${announcement.id})"><i class="fas fa-trash"></i> Delete</button>
-                                        </div>
-                                    ` : ''}
-                                </div>
-                            `).join('')}
-                        </div>
-                    </div>
-                </div>
-            `,
-
-            // Events Page
-            events: `
-                <div class="page-content">
-                    <div class="container">
-                        <div class="page-header">
-                            <h1>Upcoming Events</h1>
-                            <p>Join us for academic, cultural, and social events</p>
-                            ${AppState.isAdmin ? '<button class="btn" id="addEventBtn"><i class="fas fa-plus"></i> Add Event</button>' : ''}
-                        </div>
-                        
-                        <div id="events-container">
-                            ${AppState.events.map(event => `
-                                <div class="card mb-3 event-card" data-id="${event.id}">
-                                    <div class="event-date">${formatDate(event.date)} | ${event.time} | ${event.category}</div>
-                                    <h3>${event.title}</h3>
-                                    <p>${event.description}</p>
-                                    <p><strong>Location:</strong> ${event.location}</p>
-                                    ${AppState.isAdmin ? `
-                                        <div class="mt-3">
-                                            <button class="action-btn edit-btn" onclick="editEvent(${event.id})"><i class="fas fa-edit"></i> Edit</button>
-                                            <button class="action-btn delete-btn" onclick="deleteEvent(${event.id})"><i class="fas fa-trash"></i> Delete</button>
-                                        </div>
-                                    ` : ''}
-                                </div>
-                            `).join('')}
-                        </div>
-                    </div>
-                </div>
-            `,
-
-            // Clubs & Associations Page
-            clubs: `
-                <div class="page-content">
-                    <div class="container">
-                        <div class="page-header">
-                            <h1>Clubs & Associations</h1>
-                            <p>Get involved in student-led organizations</p>
-                        </div>
-                        
-                        <div class="services-grid">
-                            ${AppState.clubs.map(club => `
-                                <div class="card service-card">
-                                    <h3>${club.name}</h3>
-                                    <p>${club.description}</p>
-                                    <p><strong>Contact:</strong> ${club.contact}</p>
-                                    <button class="btn btn-secondary mt-2">Join Club</button>
-                                </div>
-                            `).join('')}
-                        </div>
-                        
-                        <div class="card mt-4">
-                            <h2>Start Your Own Club</h2>
-                            <p>Interested in starting a new club or association? Submit a proposal to the Student Union office with the following information:</p>
-                            <ul class="mt-2">
-                                <li>Club name and purpose</li>
-                                <li>List of founding members (minimum 10 students)</li>
-                                <li>Proposed activities and meeting schedule</li>
-                                <li>Faculty advisor (if applicable)</li>
-                            </ul>
-                            <button class="btn mt-3">Submit Club Proposal</button>
-                        </div>
-                    </div>
-                </div>
-            `,
-
-            // Leadership Page
-            leadership: `
-                <div class="page-content">
-                    <div class="container">
-                        <div class="page-header">
-                            <h1>Student Union Leadership</h1>
-                            <p>Meet your elected student representatives</p>
-                        </div>
-                        
-                        <div class="leadership-grid">
-                            ${AppState.leaders.map(leader => `
-                                <div class="card leader-card">
-                                    <div class="leader-photo">
-                                        <i class="fas fa-user"></i>
-                                    </div>
-                                    <h3>${leader.name}</h3>
-                                    <p class="text-center"><strong>${leader.position}</strong></p>
-                                    <p>${leader.department}</p>
-                                    <p>${leader.year}</p>
-                                    <p class="mt-2">${leader.bio}</p>
-                                    <button class="btn btn-secondary mt-2">Contact</button>
-                                </div>
-                            `).join('')}
-                        </div>
-                        
-                        <div class="card mt-4">
-                            <h2>Election Process</h2>
-                            <p>Student Union leaders are elected annually through a democratic process open to all registered students. Elections typically occur in April, with campaigning periods, debates, and voting conducted both online and in-person.</p>
-                            <div class="mt-3">
-                                <button class="btn">View Election Calendar</button>
-                                <button class="btn btn-secondary">Run for Office</button>
+                    <div class="dashboard-pane" id="settingsPane">
+                        <h3>Account Settings</h3>
+                        <form id="settingsForm">
+                            <div class="form-group">
+                                <label for="changePassword">New Password</label>
+                                <input type="password" id="changePassword">
                             </div>
-                        </div>
+                            <div class="form-group">
+                                <label for="changePasswordConfirm">Confirm New Password</label>
+                                <input type="password" id="changePasswordConfirm">
+                            </div>
+                            <div class="form-group">
+                                <label for="notificationPref">Notification Preferences</label>
+                                <select id="notificationPref">
+                                    <option value="all">All Notifications</option>
+                                    <option value="important">Important Only</option>
+                                    <option value="none">None</option>
+                                </select>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Save Changes</button>
+                        </form>
                     </div>
                 </div>
-            `,
+            </div>
+        </div>
+    </div>
 
-            // Contact Us Page
-            contact: `
-                <div class="page-content">
-                    <div class="container">
-                        <div class="page-header">
-                            <h1>Contact Us</h1>
-                            <p>Get in touch with the Student Union</p>
-                        </div>
-                        
-                        <div class="contact-container">
-                            <div class="card">
-                                <h2>Send Us a Message</h2>
-                                <form id="contactForm">
-                                    <div class="form-group">
-                                        <label for="contactName">Full Name</label>
-                                        <input type="text" id="contactName" required>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="contactEmail">Email</label>
-                                        <input type="email" id="contactEmail" required>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="contactSubject">Subject</label>
-                                        <select id="contactSubject">
-                                            <option value="general">General Inquiry</option>
-                                            <option value="complaint">Complaint</option>
-                                            <option value="suggestion">Suggestion</option>
-                                            <option value="service">Service Request</option>
-                                            <option value="other">Other</option>
-                                        </select>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="contactMessage">Message</label>
-                                        <textarea id="contactMessage" rows="5" required></textarea>
-                                    </div>
-                                    <button type="submit" class="btn">Send Message</button>
-                                    <p id="contactMessageStatus" class="mt-2"></p>
-                                </form>
-                            </div>
-                            
-                            <div class="contact-info">
-                                <div class="card">
-                                    <h2>Contact Information</h2>
-                                    <div class="info-item">
-                                        <div class="info-icon"><i class="fas fa-map-marker-alt"></i></div>
-                                        <div>
-                                            <h4>Address</h4>
-                                            <p>Student Union Building, Oda Bultum University Main Campus, Chiro, Ethiopia</p>
-                                        </div>
-                                    </div>
-                                    <div class="info-item">
-                                        <div class="info-icon"><i class="fas fa-phone"></i></div>
-                                        <div>
-                                            <h4>Phone</h4>
-                                            <p>+251 123 456 789</p>
-                                            <p>Mon-Fri: 8:30 AM - 5:00 PM</p>
-                                        </div>
-                                    </div>
-                                    <div class="info-item">
-                                        <div class="info-icon"><i class="fas fa-envelope"></i></div>
-                                        <div>
-                                            <h4>Email</h4>
-                                            <p>student.union@obu.edu.et</p>
-                                            <p>For general inquiries</p>
-                                        </div>
-                                    </div>
-                                    <div class="info-item">
-                                        <div class="info-icon"><i class="fas fa-clock"></i></div>
-                                        <div>
-                                            <h4>Office Hours</h4>
-                                            <p>Monday - Friday: 8:30 AM - 5:00 PM</p>
-                                            <p>Saturday: 10:00 AM - 2:00 PM</p>
-                                            <p>Sunday: Closed</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            `,
+    <!-- Toast Notification -->
+    <div class="toast-container" id="toastContainer"></div>
 
-            // Admin Dashboard
-            admin: `
-                <div class="page-content">
-                    <div class="container">
-                        <div class="admin-header">
-                            <h1>Admin Dashboard</h1>
-                            <button class="btn btn-secondary" id="logoutAdmin">Logout</button>
-                        </div>
-                        
-                        <div class="admin-container">
-                            <div class="admin-sidebar">
-                                <h3>Admin Panel</h3>
-                                <ul class="admin-nav">
-                                    <li><a href="#" class="admin-nav-link active" data-admin-tab="announcements">Announcements</a></li>
-                                    <li><a href="#" class="admin-nav-link" data-admin-tab="events">Events</a></li>
-                                    <li><a href="#" class="admin-nav-link" data-admin-tab="messages">Student Messages</a></li>
-                                    <li><a href="#" class="admin-nav-link" data-admin-tab="users">User Management</a></li>
-                                </ul>
-                            </div>
-                            
-                            <div class="admin-main">
-                                <div id="admin-announcements" class="admin-tab active">
-                                    <h2>Manage Announcements</h2>
-                                    <button class="btn mb-3" id="adminAddAnnouncement"><i class="fas fa-plus"></i> Add New Announcement</button>
-                                    <table class="data-table">
-                                        <thead>
-                                            <tr>
-                                                <th>ID</th>
-                                                <th>Title</th>
-                                                <th>Date</th>
-                                                <th>Category</th>
-                                                <th>Actions</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody id="adminAnnouncementsTable">
-                                            ${AppState.announcements.map(ann => `
-                                                <tr>
-                                                    <td>${ann.id}</td>
-                                                    <td>${ann.title}</td>
-                                                    <td>${ann.date}</td>
-                                                    <td>${ann.category}</td>
-                                                    <td>
-                                                        <button class="action-btn edit-btn" onclick="editAnnouncement(${ann.id})">Edit</button>
-                                                        <button class="action-btn delete-btn" onclick="deleteAnnouncement(${ann.id})">Delete</button>
-                                                    </td>
-                                                </tr>
-                                            `).join('')}
-                                        </tbody>
-                                    </table>
-                                </div>
-                                
-                                <div id="admin-events" class="admin-tab hidden">
-                                    <h2>Manage Events</h2>
-                                    <button class="btn mb-3" id="adminAddEvent"><i class="fas fa-plus"></i> Add New Event</button>
-                                    <table class="data-table">
-                                        <thead>
-                                            <tr>
-                                                <th>ID</th>
-                                                <th>Title</th>
-                                                <th>Date</th>
-                                                <th>Location</th>
-                                                <th>Actions</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody id="adminEventsTable">
-                                            ${AppState.events.map(event => `
-                                                <tr>
-                                                    <td>${event.id}</td>
-                                                    <td>${event.title}</td>
-                                                    <td>${event.date}</td>
-                                                    <td>${event.location}</td>
-                                                    <td>
-                                                        <button class="action-btn edit-btn" onclick="editEvent(${event.id})">Edit</button>
-                                                        <button class="action-btn delete-btn" onclick="deleteEvent(${event.id})">Delete</button>
-                                                    </td>
-                                                </tr>
-                                            `).join('')}
-                                        </tbody>
-                                    </table>
-                                </div>
-                                
-                                <div id="admin-messages" class="admin-tab hidden">
-                                    <h2>Student Messages</h2>
-                                    <p>No messages yet. Messages submitted through contact form will appear here.</p>
-                                </div>
-                                
-                                <div id="admin-users" class="admin-tab hidden">
-                                    <h2>User Management</h2>
-                                    <table class="data-table">
-                                        <thead>
-                                            <tr>
-                                                <th>ID</th>
-                                                <th>Name</th>
-                                                <th>Username/Email</th>
-                                                <th>Role</th>
-                                                <th>Actions</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody id="adminUsersTable">
-                                            ${AppState.users.map(user => `
-                                                <tr>
-                                                    <td>${user.id}</td>
-                                                    <td>${user.name || user.username}</td>
-                                                    <td>${user.email || user.username}</td>
-                                                    <td>${user.role}</td>
-                                                    <td>
-                                                        <button class="action-btn edit-btn">Edit</button>
-                                                        <button class="action-btn delete-btn">Delete</button>
-                                                    </td>
-                                                </tr>
-                                            `).join('')}
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            `
-        };
-
-        // ===== UTILITY FUNCTIONS =====
-        function formatDate(dateString) {
-            const options = { year: 'numeric', month: 'long', day: 'numeric' };
-            return new Date(dateString).toLocaleDateString('en-US', options);
-        }
-
-        function showNotification(message, type = 'success') {
-            // Create notification element
-            const notification = document.createElement('div');
-            notification.className = `notification ${type}`;
-            notification.innerHTML = `
-                <div style="position: fixed; top: 20px; right: 20px; background-color: ${type === 'success' ? 'var(--primary-green)' : '#f44336'}; color: white; padding: 15px 25px; border-radius: var(--border-radius); z-index: 3000; box-shadow: var(--shadow);">
-                    ${message}
-                </div>
-            `;
-            document.body.appendChild(notification);
-            
-            // Remove after 3 seconds
-            setTimeout(() => {
-                notification.remove();
-            }, 3000);
-        }
-
-        // ===== PAGE MANAGEMENT =====
-        function loadPage(page) {
-            AppState.currentPage = page;
-            
-            // Update active navigation link
-            elements.navLinks.forEach(link => {
-                if (link.dataset.page === page) {
-                    link.classList.add('active');
-                } else {
-                    link.classList.remove('active');
-                }
-            });
-            
-            // Load page content
-            if (page === 'home') {
-                elements.mainContent.innerHTML = document.getElementById('home-page').innerHTML;
-                loadDynamicData(); // Load announcements and events from "server"
-            } else if (page === 'admin' && !AppState.isAdmin) {
-                showAuthModal('admin');
-                return;
-            } else {
-                elements.mainContent.innerHTML = pageTemplates[page] || `<div class="page-content"><div class="container"><h1>Page Not Found</h1></div></div>`;
-            }
-            
-            // Initialize page-specific event listeners
-            initializePageEvents(page);
-            
-            // Scroll to top
-            window.scrollTo(0, 0);
-        }
-
-        function initializePageEvents(page) {
-            switch(page) {
-                case 'services':
-                    document.getElementById('serviceLoginBtn')?.addEventListener('click', () => showAuthModal('login'));
-                    break;
-                case 'news':
-                    if (AppState.isAdmin) {
-                        document.getElementById('addAnnouncementBtn')?.addEventListener('click', () => addNewAnnouncement());
-                    }
-                    break;
-                case 'events':
-                    if (AppState.isAdmin) {
-                        document.getElementById('addEventBtn')?.addEventListener('click', () => addNewEvent());
-                    }
-                    break;
-                case 'contact':
-                    document.getElementById('contactForm')?.addEventListener('submit', handleContactSubmit);
-                    break;
-                case 'admin':
-                    initializeAdminEvents();
-                    break;
-            }
-        }
-
-        // ===== AUTHENTICATION =====
-        function showAuthModal(defaultTab = 'login') {
-            elements.authModal.classList.remove('hidden');
-            
-            // Reset forms
-            document.getElementById('studentId').value = '';
-            document.getElementById('password').value = '';
-            document.getElementById('regName').value = '';
-            document.getElementById('regStudentId').value = '';
-            document.getElementById('regEmail').value = '';
-            document.getElementById('regPassword').value = '';
-            document.getElementById('adminUsername').value = '';
-            document.getElementById('adminPassword').value = '';
-            
-            // Show default tab
-            switchTab(defaultTab);
-        }
-
-        function hideAuthModal() {
-            elements.authModal.classList.add('hidden');
-        }
-
-        function switchTab(tab) {
-            // Update active tab
-            [elements.loginTab, elements.registerTab, elements.adminTab].forEach(t => t.classList.remove('active'));
-            [elements.loginForm, elements.registerForm, elements.adminForm].forEach(f => f.classList.remove('active'));
-            
-            if (tab === 'login') {
-                elements.loginTab.classList.add('active');
-                elements.loginForm.classList.add('active');
-            } else if (tab === 'register') {
-                elements.registerTab.classList.add('active');
-                elements.registerForm.classList.add('active');
-            } else if (tab === 'admin') {
-                elements.adminTab.classList.add('active');
-                elements.adminForm.classList.add('active');
-            }
-        }
-
-        function handleLogin() {
-            const studentId = document.getElementById('studentId').value;
-            const password = document.getElementById('password').value;
-            
-            // Simulate API call
-            setTimeout(() => {
-                const user = AppState.users.find(u => 
-                    (u.studentId === studentId || u.email === studentId) && u.password === password
-                );
-                
-                if (user) {
-                    AppState.currentUser = user;
-                    AppState.isAdmin = user.role === 'admin';
-                    elements.loginMessage.textContent = 'Login successful!';
-                    elements.loginMessage.style.color = 'var(--primary-green)';
-                    
-                    // Update UI for logged in user
-                    updateAuthUI();
-                    
-                    setTimeout(() => {
-                        hideAuthModal();
-                        if (AppState.isAdmin) {
-                            loadPage('admin');
-                        }
-                    }, 1000);
-                } else {
-                    elements.loginMessage.textContent = 'Invalid credentials. Please try again.';
-                    elements.loginMessage.style.color = '#f44336';
-                }
-            }, 500);
-        }
-
-        function handleRegister() {
-            const name = document.getElementById('regName').value;
-            const studentId = document.getElementById('regStudentId').value;
-            const email = document.getElementById('regEmail').value;
-            const password = document.getElementById('regPassword').value;
-            
-            // Basic validation
-            if (!name || !studentId || !email || !password) {
-                elements.registerMessage.textContent = 'Please fill all fields.';
-                elements.registerMessage.style.color = '#f44336';
-                return;
-            }
-            
-            // Simulate API call
-            setTimeout(() => {
-                const newUser = {
-                    id: AppState.users.length + 1,
-                    name,
-                    studentId,
-                    email,
-                    password,
-                    role: 'student'
-                };
-                
-                AppState.users.push(newUser);
-                elements.registerMessage.textContent = 'Registration successful! You can now login.';
-                elements.registerMessage.style.color = 'var(--primary-green)';
-                
-                // Switch to login tab
-                setTimeout(() => switchTab('login'), 1500);
-            }, 500);
-        }
-
-        function handleAdminLogin() {
-            const username = document.getElementById('adminUsername').value;
-            const password = document.getElementById('adminPassword').value;
-            
-            // Simulate API call
-            setTimeout(() => {
-                const admin = AppState.users.find(u => 
-                    u.username === username && u.password === password && u.role === 'admin'
-                );
-                
-                if (admin) {
-                    AppState.currentUser = admin;
-                    AppState.isAdmin = true;
-                    elements.adminMessage.textContent = 'Admin login successful!';
-                    elements.adminMessage.style.color = 'var(--primary-green)';
-                    
-                    // Update UI
-                    updateAuthUI();
-                    
-                    setTimeout(() => {
-                        hideAuthModal();
-                        loadPage('admin');
-                    }, 1000);
-                } else {
-                    elements.adminMessage.textContent = 'Invalid admin credentials.';
-                    elements.adminMessage.style.color = '#f44336';
-                }
-            }, 500);
-        }
-
-        function logout() {
-            AppState.currentUser = null;
-            AppState.isAdmin = false;
-            updateAuthUI();
-            loadPage('home');
-            showNotification('Logged out successfully');
-        }
-
-        function updateAuthUI() {
-            if (AppState.currentUser) {
-                // Update auth buttons to show user info
-                elements.authButtons.innerHTML = `
-                    <span style="margin-right: 15px;">Welcome, ${AppState.currentUser.name || AppState.currentUser.username}</span>
-                    <button class="btn btn-secondary" id="logoutBtn">Logout</button>
-                `;
-                document.getElementById('logoutBtn').addEventListener('click', logout);
-                
-                // Update admin login button for admins
-                if (AppState.isAdmin) {
-                    elements.adminLoginBtn.textContent = 'Admin Dashboard';
-                    elements.adminLoginBtn.addEventListener('click', () => loadPage('admin'));
-                }
-            } else {
-                // Reset to default buttons
-                elements.authButtons.innerHTML = `
-                    <button class="btn btn-secondary" id="loginBtn">Student Login</button>
-                    <button class="btn" id="adminLoginBtn">Admin Login</button>
-                `;
-                elements.adminLoginBtn.textContent = 'Admin Login';
-                
-                // Reattach event listeners
-                document.getElementById('loginBtn').addEventListener('click', () => showAuthModal('login'));
-                document.getElementById('adminLoginBtn').addEventListener('click', () => showAuthModal('admin'));
-            }
-        }
-
-        // ===== ADMIN FUNCTIONALITY =====
-        function initializeAdminEvents() {
-            // Admin navigation tabs
-            document.querySelectorAll('.admin-nav-link').forEach(link => {
-                link.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    const tab = this.dataset.adminTab;
-                    
-                    // Update active tab
-                    document.querySelectorAll('.admin-nav-link').forEach(l => l.classList.remove('active'));
-                    this.classList.add('active');
-                    
-                    // Show selected tab content
-                    document.querySelectorAll('.admin-tab').forEach(t => t.classList.add('hidden'));
-                    document.getElementById(`admin-${tab}`).classList.remove('hidden');
-                });
-            });
-            
-            // Add announcement button
-            document.getElementById('adminAddAnnouncement')?.addEventListener('click', addNewAnnouncement);
-            
-            // Add event button
-            document.getElementById('adminAddEvent')?.addEventListener('click', addNewEvent);
-            
-            // Admin logout
-            document.getElementById('logoutAdmin')?.addEventListener('click', logout);
-        }
-
-        function addNewAnnouncement() {
-            const title = prompt('Enter announcement title:');
-            if (!title) return;
-            
-            const content = prompt('Enter announcement content:');
-            if (!content) return;
-            
-            const category = prompt('Enter category (Elections, Academic, Services, etc.):') || 'General';
-            
-            const newAnnouncement = {
-                id: AppState.announcements.length + 1,
-                title,
-                content,
-                date: new Date().toISOString().split('T')[0],
-                category
-            };
-            
-            AppState.announcements.unshift(newAnnouncement);
-            showNotification('Announcement added successfully!');
-            
-            // Reload current page
-            if (AppState.currentPage === 'news' || AppState.currentPage === 'admin') {
-                loadPage(AppState.currentPage);
-            }
-        }
-
-        function editAnnouncement(id) {
-            const announcement = AppState.announcements.find(a => a.id === id);
-            if (!announcement) return;
-            
-            const newTitle = prompt('Edit title:', announcement.title);
-            if (newTitle === null) return;
-            
-            const newContent = prompt('Edit content:', announcement.content);
-            if (newContent === null) return;
-            
-            announcement.title = newTitle;
-            announcement.content = newContent;
-            
-            showNotification('Announcement updated successfully!');
-            
-            // Reload current page
-            if (AppState.currentPage === 'news' || AppState.currentPage === 'admin') {
-                loadPage(AppState.currentPage);
-            }
-        }
-
-        function deleteAnnouncement(id) {
-            if (confirm('Are you sure you want to delete this announcement?')) {
-                AppState.announcements = AppState.announcements.filter(a => a.id !== id);
-                showNotification('Announcement deleted successfully!');
-                
-                // Reload current page
-                if (AppState.currentPage === 'news' || AppState.currentPage === 'admin') {
-                    loadPage(AppState.currentPage);
-                }
-            }
-        }
-
-        function addNewEvent() {
-            const title = prompt('Enter event title:');
-            if (!title) return;
-            
-            const description = prompt('Enter event description:');
-            if (!description) return;
-            
-            const date = prompt('Enter event date (YYYY-MM-DD):', new Date().toISOString().split('T')[0]);
-            if (!date) return;
-            
-            const time = prompt('Enter event time (e.g., 2:00 PM):', '2:00 PM');
-            const location = prompt('Enter event location:', 'University Main Hall');
-            const category = prompt('Enter category (Career, Cultural, Sports, etc.):', 'General');
-            
-            const newEvent = {
-                id: AppState.events.length + 1,
-                title,
-                description,
-                date,
-                time,
-                location,
-                category
-            };
-            
-            AppState.events.unshift(newEvent);
-            showNotification('Event added successfully!');
-            
-            // Reload current page
-            if (AppState.currentPage === 'events' || AppState.currentPage === 'admin') {
-                loadPage(AppState.currentPage);
-            }
-        }
-
-        function editEvent(id) {
-            const event = AppState.events.find(e => e.id === id);
-            if (!event) return;
-            
-            const newTitle = prompt('Edit title:', event.title);
-            if (newTitle === null) return;
-            
-            const newDescription = prompt('Edit description:', event.description);
-            if (newDescription === null) return;
-            
-            event.title = newTitle;
-            event.description = newDescription;
-            
-            showNotification('Event updated successfully!');
-            
-            // Reload current page
-            if (AppState.currentPage === 'events' || AppState.currentPage === 'admin') {
-                loadPage(AppState.currentPage);
-            }
-        }
-
-        function deleteEvent(id) {
-            if (confirm('Are you sure you want to delete this event?')) {
-                AppState.events = AppState.events.filter(e => e.id !== id);
-                showNotification('Event deleted successfully!');
-                
-                // Reload current page
-                if (AppState.currentPage === 'events' || AppState.currentPage === 'admin') {
-                    loadPage(AppState.currentPage);
-                }
-            }
-        }
-
-        // ===== CONTACT FORM =====
-        function handleContactSubmit(e) {
-            e.preventDefault();
-            
-            const name = document.getElementById('contactName').value;
-            const email = document.getElementById('contactEmail').value;
-            const subject = document.getElementById('contactSubject').value;
-            const message = document.getElementById('contactMessage').value;
-            
-            // Simulate API call
-            setTimeout(() => {
-                document.getElementById('contactMessageStatus').textContent = 'Message sent successfully! We will respond within 48 hours.';
-                document.getElementById('contactMessageStatus').style.color = 'var(--primary-green)';
-                
-                // Reset form
-                document.getElementById('contactForm').reset();
-                
-                showNotification('Message sent successfully!');
-            }, 500);
-        }
-
-        // ===== LOAD DYNAMIC DATA (Simulating API calls) =====
-        function loadDynamicData() {
-            // Simulate fetching announcements from server
-            setTimeout(() => {
-                const announcementsList = document.getElementById('announcements-list');
-                if (announcementsList) {
-                    announcementsList.innerHTML = AppState.announcements.slice(0, 3).map(ann => `
-                        <div class="announcement-item">
-                            <div class="announcement-date">${formatDate(ann.date)} | ${ann.category}</div>
-                            <h4>${ann.title}</h4>
-                            <p>${ann.content}</p>
-                        </div>
-                    `).join('');
-                }
-                
-                // Simulate fetching events from server
-                const eventsList = document.getElementById('events-list');
-                if (eventsList) {
-                    eventsList.innerHTML = AppState.events.slice(0, 3).map(event => `
-                        <div class="event-item">
-                            <div class="event-date">${formatDate(event.date)} | ${event.time} | ${event.category}</div>
-                            <h4>${event.title}</h4>
-                            <p>${event.description}</p>
-                            <p><strong>Location:</strong> ${event.location}</p>
-                        </div>
-                    `).join('');
-                }
-            }, 300);
-        }
-
-        // ===== GLOBAL FUNCTIONS (for inline event handlers) =====
-        window.showServiceDetail = function(serviceId) {
-            const service = AppState.services.find(s => s.id === serviceId);
-            if (service) {
-                alert(`Service: ${service.name}\n\nDescription: ${service.description}\n\nTo access this service, please visit the Student Union office or log in to submit requests online.`);
-            }
-        };
-
-        // ===== EVENT LISTENERS =====
-        function initializeEventListeners() {
-            // Navigation links
-            elements.navLinks.forEach(link => {
-                link.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    const page = this.dataset.page;
-                    loadPage(page);
-                });
-            });
-            
-            // Auth buttons
-            elements.loginBtn.addEventListener('click', () => showAuthModal('login'));
-            elements.adminLoginBtn.addEventListener('click', () => showAuthModal('admin'));
-            
-            // Auth modal tabs
-            elements.loginTab.addEventListener('click', () => switchTab('login'));
-            elements.registerTab.addEventListener('click', () => switchTab('register'));
-            elements.adminTab.addEventListener('click', () => switchTab('admin'));
-            
-            // Auth form submissions
-            elements.submitLogin.addEventListener('click', handleLogin);
-            elements.submitRegister.addEventListener('click', handleRegister);
-            elements.submitAdminLogin.addEventListener('click', handleAdminLogin);
-            
-            // Close modal
-            elements.closeModal.addEventListener('click', hideAuthModal);
-            elements.authModal.addEventListener('click', function(e) {
-                if (e.target === this) hideAuthModal();
-            });
-            
-            // Mobile menu toggle
-            elements.menuToggle.addEventListener('click', function() {
-                const nav = document.querySelector('nav');
-                const navLinks = document.querySelector('.nav-links');
-                const authButtons = document.querySelector('.auth-buttons');
-                
-                if (navLinks.style.display === 'flex') {
-                    navLinks.style.display = 'none';
-                    authButtons.style.display = 'none';
-                } else {
-                    navLinks.style.display = 'flex';
-                    authButtons.style.display = 'flex';
-                    navLinks.style.flexDirection = 'column';
-                    authButtons.style.flexDirection = 'column';
-                    nav.style.flexDirection = 'column';
-                    nav.style.alignItems = 'flex-start';
-                    nav.style.gap = '20px';
-                    nav.style.marginTop = '20px';
-                }
-            });
-            
-            // Footer links
-            document.querySelectorAll('.footer-links a[data-page]').forEach(link => {
-                link.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    const page = this.dataset.page;
-                    loadPage(page);
-                });
-            });
-            
-            // Quick access buttons in home page
-            document.addEventListener('click', function(e) {
-                if (e.target.matches('.btn[data-page]')) {
-                    e.preventDefault();
-                    const page = e.target.dataset.page;
-                    loadPage(page);
-                }
-            });
-        }
-
-        // ===== INITIALIZATION =====
-        function init() {
-            initializeEventListeners();
-            loadPage('home'); // Load home page by default
-        }
-
-        // Start the application when DOM is loaded
-        document.addEventListener('DOMContentLoaded', init);
-    </script>
+    <script src="script.js"></script>
 </body>
-</html>
+                            </html>
