@@ -1,471 +1,1933 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Student Union — Registration & Dashboard</title>
-  <style>
-    :root{--primary:#4c6ef5;--accent:#15aabf;--muted:#6c757d}
-    *{box-sizing:border-box}
-    body{font-family:Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial; margin:0; background:#f1f5f9}
-    header{background:linear-gradient(90deg,var(--primary),var(--accent)); color:#fff; padding:18px 24px}
-    header .brand{font-weight:700;font-size:18px}
-    .wrap{max-width:1100px;margin:28px auto;padding:0 18px}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI-Generation | Tech Education Platform</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1d4ed8;
+            --secondary: #7c3aed;
+            --accent: #0ea5e9;
+            --dark: #1e293b;
+            --light: #f8fafc;
+            --gray: #64748b;
+            --success: #10b981;
+            --danger: #ef4444;
+            --warning: #f59e0b;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --radius: 8px;
+            --transition: all 0.3s ease;
+        }
 
-    /* layout */
-    .grid{display:grid;grid-template-columns:1fr 360px;gap:20px}
-    .card{background:#fff;border-radius:12px;padding:20px;box-shadow:0 6px 20px rgba(18,38,63,0.06)}
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
 
-    /* form styles */
-    form label{display:block;margin:12px 0 6px;font-weight:600;color:#222}
-    input[type=text],input[type=email],input[type=password],input[type=tel],input[type=date],select{width:100%;padding:10px;border-radius:8px;border:1px solid #e6e9ef;background:#fbfdff}
-    input[type=file]{padding:6px}
-    .btn{display:inline-block;padding:10px 14px;border-radius:10px;border:none;background:var(--primary);color:#fff;font-weight:700;cursor:pointer}
-    .btn.secondary{background:#fff;color:var(--primary);border:1px solid #e6e9ef}
-    .muted{color:var(--muted);font-size:13px}
+        body {
+            background-color: #f1f5f9;
+            color: var(--dark);
+            line-height: 1.6;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
 
-    /* small helpers */
-    .row{display:flex;gap:12px}
-    .row > *{flex:1}
-    .member-list{max-height:420px;overflow:auto;padding-right:4px}
-    .member-item{display:flex;gap:12px;padding:10px;border-radius:8px;border:1px solid #f0f2f5;margin-bottom:8px;align-items:center}
-    .avatar{width:56px;height:56px;border-radius:8px;object-fit:cover;background:#eef3ff}
-    .meta{flex:1}
-    .meta h4{margin:0 0 4px;font-size:15px}
-    .meta p{margin:0;color:var(--muted);font-size:13px}
+        /* Header & Navigation */
+        header {
+            background: white;
+            box-shadow: var(--shadow);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
 
-    /* dashboard */
-    .topbar{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px}
-    .search{padding:10px;border-radius:10px;border:1px solid #e6e9ef;width:100%;}
-    .small{font-size:13px}
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
 
-    /* responsive */
-    @media (max-width:880px){.grid{grid-template-columns:1fr}.wrap{margin:18px}}
+        .logo i {
+            color: var(--secondary);
+        }
 
-    /* footer */
-    footer{margin-top:28px;text-align:center;color:#9aa6b2;padding:18px}
+        nav {
+            display: flex;
+            gap: 1.5rem;
+        }
 
-    /* simple badge */
-    .badge{padding:6px 8px;border-radius:8px;background:#f1f5ff;color:var(--primary);font-weight:700;font-size:12px}
+        .nav-link {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border-radius: var(--radius);
+            transition: var(--transition);
+        }
 
-    /* hidden file preview */
-    .preview{display:flex;gap:10px;flex-wrap:wrap;margin-top:8px}
-    .preview img{width:72px;height:72px;border-radius:6px;object-fit:cover;border:1px solid #e6eef9}
-  </style>
+        .nav-link:hover {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        .nav-link.active {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--dark);
+            cursor: pointer;
+        }
+
+        .user-actions {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .btn {
+            padding: 0.6rem 1.5rem;
+            border-radius: var(--radius);
+            border: none;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-primary {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+        }
+
+        .btn-outline:hover {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        .btn-success {
+            background-color: var(--success);
+            color: white;
+        }
+
+        .btn-danger {
+            background-color: var(--danger);
+            color: white;
+        }
+
+        /* Main Content */
+        main {
+            margin-top: 80px;
+            padding: 2rem;
+            min-height: calc(100vh - 200px);
+        }
+
+        .page {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Home Page */
+        .hero {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 4rem 2rem;
+            border-radius: var(--radius);
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto 2rem;
+        }
+
+        .stats {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            margin-top: 2rem;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 2rem;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .feature-card i {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        /* Courses */
+        .courses-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .course-card {
+            background: white;
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .course-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .course-img {
+            height: 180px;
+            background: linear-gradient(45deg, var(--primary), var(--accent));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 3rem;
+        }
+
+        .course-content {
+            padding: 1.5rem;
+        }
+
+        .course-category {
+            display: inline-block;
+            background: var(--accent);
+            color: white;
+            padding: 0.3rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Dashboard */
+        .dashboard-container {
+            display: grid;
+            grid-template-columns: 250px 1fr;
+            gap: 2rem;
+        }
+
+        .sidebar {
+            background: white;
+            border-radius: var(--radius);
+            padding: 1.5rem;
+            box-shadow: var(--shadow);
+            height: fit-content;
+        }
+
+        .sidebar-menu {
+            list-style: none;
+        }
+
+        .sidebar-menu li {
+            margin-bottom: 0.5rem;
+        }
+
+        .sidebar-menu a {
+            display: block;
+            padding: 0.8rem 1rem;
+            text-decoration: none;
+            color: var(--dark);
+            border-radius: var(--radius);
+            transition: var(--transition);
+        }
+
+        .sidebar-menu a:hover, .sidebar-menu a.active {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        .dashboard-content {
+            background: white;
+            border-radius: var(--radius);
+            padding: 2rem;
+            box-shadow: var(--shadow);
+        }
+
+        /* Forms */
+        .form-container {
+            max-width: 500px;
+            margin: 2rem auto;
+            background: white;
+            padding: 2rem;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: var(--radius);
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+        }
+
+        /* Quiz System */
+        .quiz-container {
+            background: white;
+            padding: 2rem;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            margin: 2rem 0;
+        }
+
+        .question {
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #eee;
+        }
+
+        .options {
+            display: grid;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .option {
+            padding: 1rem;
+            border: 2px solid #ddd;
+            border-radius: var(--radius);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .option:hover {
+            background-color: #f8fafc;
+        }
+
+        .option.selected {
+            border-color: var(--primary);
+            background-color: rgba(37, 99, 235, 0.05);
+        }
+
+        /* AI Assistant */
+        .ai-assistant {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            z-index: 1000;
+        }
+
+        .ai-toggle {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: var(--primary);
+            color: white;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(37, 99, 235, 0.3);
+            transition: var(--transition);
+        }
+
+        .ai-toggle:hover {
+            transform: scale(1.1);
+        }
+
+        .ai-chatbox {
+            position: absolute;
+            bottom: 70px;
+            right: 0;
+            width: 350px;
+            height: 500px;
+            background: white;
+            border-radius: var(--radius);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            display: none;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .ai-chatbox.active {
+            display: flex;
+        }
+
+        .ai-header {
+            background: var(--primary);
+            color: white;
+            padding: 1rem;
+            text-align: center;
+            font-weight: 600;
+        }
+
+        .ai-messages {
+            flex: 1;
+            padding: 1rem;
+            overflow-y: auto;
+        }
+
+        .ai-input-area {
+            padding: 1rem;
+            border-top: 1px solid #eee;
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .message {
+            margin-bottom: 1rem;
+            padding: 0.8rem;
+            border-radius: var(--radius);
+            max-width: 80%;
+        }
+
+        .user-message {
+            background: var(--primary);
+            color: white;
+            margin-left: auto;
+        }
+
+        .ai-message {
+            background: #f1f5f9;
+            color: var(--dark);
+        }
+
+        /* Admin */
+        .admin-controls {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .table-container {
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+
+        th, td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid #eee;
+        }
+
+        th {
+            background-color: var(--primary);
+            color: white;
+            font-weight: 600;
+        }
+
+        tr:hover {
+            background-color: #f8fafc;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 3rem 2rem 1rem;
+            margin-top: 3rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 1rem;
+            color: var(--accent);
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-section a {
+            color: #cbd5e1;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-section a:hover {
+            color: white;
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid #334155;
+            color: #94a3b8;
+        }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .dashboard-container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            header {
+                padding: 1rem;
+            }
+
+            nav {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: white;
+                flex-direction: column;
+                padding: 1rem;
+                box-shadow: var(--shadow);
+            }
+
+            nav.active {
+                display: flex;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .user-actions {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .stats {
+                flex-direction: column;
+                gap: 1.5rem;
+            }
+
+            .ai-chatbox {
+                width: 300px;
+                height: 400px;
+            }
+        }
+    </style>
 </head>
 <body>
-  <header>
-    <div class="wrap"><div class="brand">Oda Bultum University — Student Union Portal</div></div>
-  </header>
-
-  <main class="wrap">
-    <div class="grid">
-      <!-- left: main forms and pages -->
-      <div>
-        <div class="card" id="page-register">
-          <div class="topbar">
-            <div>
-              <h3 style="margin:0">Register Member</h3>
-              <div class="muted">Create a student union account</div>
-            </div>
-            <div>
-              <button class="btn" id="to-login">Login</button>
-            </div>
-          </div>
-
-          <form id="registerForm">
-            <label>Full Name</label>
-            <input type="text" id="fullname" required />
-
-            <div class="row">
-              <div>
-                <label>Username</label>
-                <input type="text" id="username" required />
-              </div>
-              <div>
-                <label>Member ID</label>
-                <input type="text" id="memberid" placeholder="e.g. SU2025-001" required />
-              </div>
-            </div>
-
-            <label>Email Address</label>
-            <input type="email" id="email" required />
-
-            <div class="row">
-              <div>
-                <label>Password</label>
-                <input type="password" id="password" required />
-              </div>
-              <div>
-                <label>Confirm Password</label>
-                <input type="password" id="confirmpassword" required />
-              </div>
-            </div>
-
-            <div class="row">
-              <div>
-                <label>Date of Birth</label>
-                <input type="date" id="dob" />
-              </div>
-              <div>
-                <label>Phone Number</label>
-                <input type="tel" id="phone" />
-              </div>
-            </div>
-
-            <div class="row">
-              <div>
-                <label>Year of Study</label>
-                <select id="year">
-                  <option value="">Select Year</option>
-                  <option value="1">1st Year</option>
-                  <option value="2">2nd Year</option>
-                  <option value="3">3rd Year</option>
-                  <option value="4">4th Year</option>
-                  <option value="5">5th Year</option>
-                </select>
-              </div>
-              <div>
-                <label>College / Faculty</label>
-                <select id="faculty">
-                  <option value="">Select College</option>
-                  <option value="technology">Engineering & Technology</option>
-                  <option value="business">Business & Economics</option>
-                  <option value="health">Health Sciences</option>
-                  <option value="social">Social Sciences</option>
-                  <option value="natural">Natural Sciences</option>
-                  <option value="agriculture">Agriculture</option>
-                </select>
-              </div>
-            </div>
-
-            <label>Your position</label>
-            <select id="position">
-              <option value="">Select Position</option>
-              <option value="president">President</option>
-              <option value="vice_president">Vice President</option>
-              <option value="general_secretary">General Secretary</option>
-                <option value="General_service">General service</option>
-                <option value="Club&_Assosiation">Club and Assosiation</option>
-              <option value="finance_head">Finance Head</option>
-              <option value="public_relation">Public Relations Officer</option>
-              <option value="event_coordinator">Event Coordinator</option>
-              <option value="committee_member">Committee Member</option>
-                <option value="Cafteria_head">Caffe head</option>
-                <option value="Dorm_head">Dorm head</option>
-            </select>
-
-            <label>Upload Profile Photo</label>
-            <input type="file" id="photo" accept="image/*" />
-            <label>Upload Student ID Card (image or PDF)</label>
-            <input type="file" id="idcard" accept="image/*,application/pdf" />
-
-            <label>Emergency Contact Number</label>
-            <input type="tel" id="emergency" />
-
-            <div style="margin-top:12px;display:flex;gap:10px;align-items:center">
-              <button class="btn" type="submit">Create Account</button>
-              <button class="btn secondary" type="button" id="resetForm">Reset</button>
-            </div>
-
-            <div class="muted small" style="margin-top:12px">Note: This demo stores data locally in your browser (localStorage). For production, connect to a backend server.</div>
-          </form>
+    <!-- Header -->
+    <header>
+        <div class="logo">
+            <i class="fas fa-robot"></i>
+            <span>AI-Generation</span>
         </div>
-
-        <!-- login card (hidden by default) -->
-        <div class="card" id="page-login" style="display:none">
-          <div class="topbar">
-            <div>
-              <h3 style="margin:0">Member Login</h3>
-              <div class="muted">Sign in to access the Student Union dashboard</div>
-            </div>
-            <div>
-              <button class="btn" id="to-register">Register</button>
-            </div>
-          </div>
-
-          <form id="loginForm">
-            <label>Member ID or Username</label>
-            <input type="text" id="loginid" required />
-
-            <label>Password</label>
-            <input type="password" id="loginpass" required />
-
-            <div style="margin-top:12px;display:flex;gap:10px">
-              <button class="btn" type="submit">Login</button>
-              <button class="btn secondary" type="button" id="quickAdmin">Admin Login</button>
-            </div>
-
-            <div class="muted" style="margin-top:10px">Admin quick login uses username: <strong>admin</strong> password: <strong>admin123</strong></div>
-          </form>
+        
+        <button class="mobile-menu-btn" id="mobileMenuBtn">
+            <i class="fas fa-bars"></i>
+        </button>
+        
+        <nav id="mainNav">
+            <a href="#home" class="nav-link active" data-page="home">Home</a>
+            <a href="#courses" class="nav-link" data-page="courses">Courses</a>
+            <a href="#resources" class="nav-link" data-page="resources">Resources</a>
+            <a href="#blog" class="nav-link" data-page="blog">Blog</a>
+            <a href="#about" class="nav-link" data-page="about">About</a>
+            <a href="#contact" class="nav-link" data-page="contact">Contact</a>
+        </nav>
+        
+        <div class="user-actions">
+            <button class="btn btn-outline" id="loginBtn">Login</button>
+            <button class="btn btn-primary" id="signupBtn">Sign Up</button>
         </div>
+    </header>
 
-        <!-- dashboard (hidden by default) -->
-        <div class="card" id="page-dashboard" style="display:none">
-          <div class="topbar">
-            <div>
-              <h3 style="margin:0">Dashboard</h3>
-              <div class="muted">Manage student union members</div>
+    <!-- Main Content -->
+    <main id="mainContent">
+        <!-- Home Page -->
+        <section id="home" class="page active">
+            <div class="hero">
+                <h1>Welcome to AI-Generation</h1>
+                <p>Master cutting-edge technology skills with our structured courses, expert resources, and AI-powered learning assistant.</p>
+                <button class="btn btn-primary btn-lg">
+                    <i class="fas fa-rocket"></i> Start Learning Now
+                </button>
+                
+                <div class="stats">
+                    <div class="stat-item">
+                        <div class="stat-number">50+</div>
+                        <div>Courses</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">10K+</div>
+                        <div>Students</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">100+</div>
+                        <div>Resources</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">24/7</div>
+                        <div>AI Support</div>
+                    </div>
+                </div>
             </div>
-            <div style="display:flex;gap:10px;align-items:center">
-              <div class="small muted" id="loggedAs"></div>
-              <button class="btn" id="logout">Logout</button>
+
+            <h2>Our Featured Courses</h2>
+            <div class="courses-grid" id="featuredCourses"></div>
+
+            <h2>Why Choose AI-Generation?</h2>
+            <div class="features">
+                <div class="feature-card">
+                    <i class="fas fa-brain"></i>
+                    <h3>AI-Powered Learning</h3>
+                    <p>Get personalized assistance and explanations from our AI tutor available 24/7.</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-laptop-code"></i>
+                    <h3>Hands-On Projects</h3>
+                    <p>Learn by building real-world projects with step-by-step guidance.</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-chart-line"></i>
+                    <h3>Progress Tracking</h3>
+                    <p>Monitor your learning journey with detailed analytics and reports.</p>
+                </div>
             </div>
-          </div>
+        </section>
 
-          <div style="display:flex;gap:16px;align-items:center;margin-bottom:12px">
-            <input class="search" id="search" placeholder="Search by name, member id or position" />
-            <button class="btn secondary" id="exportCsv">Export CSV</button>
-          </div>
+        <!-- Courses Page -->
+        <section id="courses" class="page">
+            <h1>Our Courses</h1>
+            <p>Browse our comprehensive technology courses designed for all skill levels.</p>
+            
+            <div class="filter-bar" style="margin: 2rem 0; display: flex; gap: 1rem;">
+                <button class="btn btn-primary" data-filter="all">All</button>
+                <button class="btn btn-outline" data-filter="frontend">Frontend</button>
+                <button class="btn btn-outline" data-filter="backend">Backend</button>
+                <button class="btn btn-outline" data-filter="fullstack">Full-Stack</button>
+                <button class="btn btn-outline" data-filter="android">Android</button>
+                <button class="btn btn-outline" data-filter="cybersecurity">Cybersecurity</button>
+            </div>
+            
+            <div class="courses-grid" id="coursesGrid"></div>
+        </section>
 
-          <div class="member-list" id="memberList"></div>
+        <!-- Course Details Page -->
+        <section id="course-details" class="page">
+            <div id="courseDetailsContent"></div>
+        </section>
 
+        <!-- Resources Page -->
+        <section id="resources" class="page">
+            <h1>Learning Resources</h1>
+            <p>Downloadable materials, cheat sheets, and study guides.</p>
+            
+            <div class="resources-container" style="margin-top: 2rem;">
+                <div class="resource-category">
+                    <h3>Frontend Development</h3>
+                    <div class="resources-list" id="frontendResources"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Blog Page -->
+        <section id="blog" class="page">
+            <h1>Latest Articles & News</h1>
+            <div class="blog-posts" id="blogPosts"></div>
+        </section>
+
+        <!-- About Page -->
+        <section id="about" class="page">
+            <div class="hero" style="background: linear-gradient(135deg, var(--secondary), var(--accent));">
+                <h1>About AI-Generation</h1>
+                <p>Empowering the next generation of developers with accessible, high-quality technology education.</p>
+            </div>
+            
+            <div style="max-width: 800px; margin: 3rem auto;">
+                <h2>Our Mission</h2>
+                <p>To democratize technology education by providing free, high-quality learning resources supplemented with AI-powered personalized assistance.</p>
+                
+                <h2 style="margin-top: 2rem;">Our Team</h2>
+                <p>We are a group of passionate developers, educators, and AI specialists committed to revolutionizing how people learn technology.</p>
+            </div>
+        </section>
+
+        <!-- Contact Page -->
+        <section id="contact" class="page">
+            <h1>Contact Us</h1>
+            <p>Have questions? Get in touch with our team.</p>
+            
+            <div class="form-container">
+                <form id="contactForm">
+                    <div class="form-group">
+                        <label for="contactName">Full Name</label>
+                        <input type="text" id="contactName" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="contactEmail">Email Address</label>
+                        <input type="email" id="contactEmail" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="contactSubject">Subject</label>
+                        <input type="text" id="contactSubject" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="contactMessage">Message</label>
+                        <textarea id="contactMessage" class="form-control" rows="5" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary" style="width: 100%;">
+                        <i class="fas fa-paper-plane"></i> Send Message
+                    </button>
+                </form>
+            </div>
+        </section>
+
+        <!-- Login Page -->
+        <section id="login" class="page">
+            <div class="form-container">
+                <h2 style="text-align: center; margin-bottom: 1.5rem;">Login to Your Account</h2>
+                <form id="loginForm">
+                    <div class="form-group">
+                        <label for="loginEmail">Email Address</label>
+                        <input type="email" id="loginEmail" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="loginPassword">Password</label>
+                        <input type="password" id="loginPassword" class="form-control" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary" style="width: 100%;">
+                        <i class="fas fa-sign-in-alt"></i> Login
+                    </button>
+                </form>
+                <div style="text-align: center; margin-top: 1rem;">
+                    <p>Don't have an account? <a href="#" id="goToSignup">Sign up here</a></p>
+                    <p><a href="#">Forgot password?</a></p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Signup Page -->
+        <section id="signup" class="page">
+            <div class="form-container">
+                <h2 style="text-align: center; margin-bottom: 1.5rem;">Create Your Account</h2>
+                <form id="signupForm">
+                    <div class="form-group">
+                        <label for="signupName">Full Name</label>
+                        <input type="text" id="signupName" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="signupEmail">Email Address</label>
+                        <input type="email" id="signupEmail" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="signupPassword">Password</label>
+                        <input type="password" id="signupPassword" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="signupRole">I want to join as:</label>
+                        <select id="signupRole" class="form-control">
+                            <option value="student">Student</option>
+                            <option value="instructor">Instructor</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-primary" style="width: 100%;">
+                        <i class="fas fa-user-plus"></i> Create Account
+                    </button>
+                </form>
+                <div style="text-align: center; margin-top: 1rem;">
+                    <p>Already have an account? <a href="#" id="goToLogin">Login here</a></p>
+                </div>
+            </div>
+        </section>
+
+        <!-- User Dashboard -->
+        <section id="dashboard" class="page">
+            <div class="dashboard-container">
+                <div class="sidebar">
+                    <h3>My Dashboard</h3>
+                    <ul class="sidebar-menu">
+                        <li><a href="#" class="dashboard-link active" data-section="overview"><i class="fas fa-home"></i> Overview</a></li>
+                        <li><a href="#" class="dashboard-link" data-section="my-courses"><i class="fas fa-book"></i> My Courses</a></li>
+                        <li><a href="#" class="dashboard-link" data-section="progress"><i class="fas fa-chart-line"></i> Progress</a></li>
+                        <li><a href="#" class="dashboard-link" data-section="resources"><i class="fas fa-download"></i> Resources</a></li>
+                        <li><a href="#" class="dashboard-link" data-section="quizzes"><i class="fas fa-question-circle"></i> Quizzes</a></li>
+                        <li><a href="#" class="dashboard-link" data-section="settings"><i class="fas fa-cog"></i> Settings</a></li>
+                    </ul>
+                </div>
+                
+                <div class="dashboard-content">
+                    <div id="dashboardOverview" class="dashboard-section active">
+                        <h2>Welcome back, <span id="userName">Student</span>!</h2>
+                        <div class="stats" style="justify-content: flex-start; gap: 2rem; margin: 2rem 0;">
+                            <div class="stat-item">
+                                <div class="stat-number" id="enrolledCourses">0</div>
+                                <div>Enrolled Courses</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-number" id="completedQuizzes">0</div>
+                                <div>Quizzes Completed</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-number" id="downloads">0</div>
+                                <div>Resources Downloaded</div>
+                            </div>
+                        </div>
+                        
+                        <h3>Continue Learning</h3>
+                        <div id="continueLearning"></div>
+                    </div>
+                    
+                    <div id="dashboardMyCourses" class="dashboard-section">
+                        <h2>My Courses</h2>
+                        <div id="myCoursesList"></div>
+                    </div>
+                    
+                    <div id="dashboardQuizzes" class="dashboard-section">
+                        <h2>Quizzes</h2>
+                        <div id="quizList"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Admin Dashboard -->
+        <section id="admin" class="page">
+            <h1>Admin Dashboard</h1>
+            
+            <div class="admin-controls">
+                <button class="btn btn-primary" id="manageCoursesBtn">
+                    <i class="fas fa-book"></i> Manage Courses
+                </button>
+                <button class="btn btn-success" id="manageUsersBtn">
+                    <i class="fas fa-users"></i> Manage Users
+                </button>
+                <button class="btn btn-outline" id="manageBlogBtn">
+                    <i class="fas fa-blog"></i> Manage Blog
+                </button>
+            </div>
+            
+            <div id="adminCoursesSection">
+                <h2>Course Management</h2>
+                <button class="btn btn-primary" id="addCourseBtn" style="margin-bottom: 1rem;">
+                    <i class="fas fa-plus"></i> Add New Course
+                </button>
+                
+                <div class="table-container">
+                    <table id="coursesTable">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Course Name</th>
+                                <th>Category</th>
+                                <th>Students</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="coursesTableBody"></tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <div id="adminUsersSection" style="display: none;">
+                <h2>User Management</h2>
+                <div class="table-container">
+                    <table id="usersTable">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Role</th>
+                                <th>Joined</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody id="usersTableBody"></tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- AI Assistant -->
+    <div class="ai-assistant">
+        <button class="ai-toggle" id="aiToggle">
+            <i class="fas fa-robot"></i>
+        </button>
+        <div class="ai-chatbox" id="aiChatbox">
+            <div class="ai-header">
+                AI Learning Assistant
+            </div>
+            <div class="ai-messages" id="aiMessages">
+                <div class="message ai-message">
+                    Hello! I'm your AI learning assistant. How can I help you today?
+                </div>
+            </div>
+            <div class="ai-input-area">
+                <input type="text" id="aiInput" class="form-control" placeholder="Ask me anything..." style="flex: 1;">
+                <button class="btn btn-primary" id="sendAiMessage">
+                    <i class="fas fa-paper-plane"></i>
+                </button>
+            </div>
         </div>
-
-      </div>
-
-      <!-- right: info panel -->
-      <aside>
-        <div class="card">
-          <h4 style="margin-top:0">Portal Info</h4>
-          <p class="muted">This Student Union website demo includes:</p>
-          <ul class="muted">
-            <li>Registration form with member ID, position, year, faculty</li>
-            <li>Login (member & admin quick login)</li>
-            <li>Dashboard to view, search, export member list</li>
-            <li>Client-side storage using localStorage (no server)</li>
-          </ul>
-
-          <hr style="margin:12px 0" />
-          <div class="muted small">Quick actions</div>
-          <div style="display:flex;gap:10px;margin-top:8px">
-            <button class="btn" id="seedData">Seed Example Data</button>
-            <button class="btn secondary" id="clearData">Clear All</button>
-          </div>
-
-          <div style="margin-top:12px" class="muted small">Developer notes: Save this file as <code>student-union.html</code> and open in modern browser. To make it persistent across devices, implement a backend (Node/PHP) and replace localStorage calls with API requests.</div>
-        </div>
-      </aside>
     </div>
 
-    <footer>© 2025 Oda Bultum University Student Union</footer>
-  </main>
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>AI-Generation</h3>
+                <p>Your pathway to mastering modern technology with AI-powered education.</p>
+                <div style="margin-top: 1rem; display: flex; gap: 1rem;">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-linkedin"></i></a>
+                    <a href="#"><i class="fab fa-github"></i></a>
+                </div>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#courses">Courses</a></li>
+                    <li><a href="#resources">Resources</a></li>
+                    <li><a href="#blog">Blog</a></li>
+                    <li><a href="#about">About Us</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Courses</h3>
+                <ul>
+                    <li><a href="#">Frontend Development</a></li>
+                    <li><a href="#">Backend Development</a></li>
+                    <li><a href="#">Full-Stack Development</a></li>
+                    <li><a href="#">Android Development</a></li>
+                    <li><a href="#">Cybersecurity</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Contact Info</h3>
+                <ul>
+                    <li><i class="fas fa-envelope"></i> support@aigeneration.com</li>
+                    <li><i class="fas fa-phone"></i> +1 (555) 123-4567</li>
+                    <li><i class="fas fa-map-marker-alt"></i> San Francisco, CA</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="copyright">
+            <p>&copy; 2024 AI-Generation. All rights reserved.</p>
+        </div>
+    </footer>
 
-  <script>
-    // Simple client-side site controller using localStorage
-    const qs = sel => document.querySelector(sel);
-    const qsa = sel => document.querySelectorAll(sel);
+    <script>
+        // Application State
+        const state = {
+            currentUser: null,
+            currentPage: 'home',
+            courses: [],
+            users: [],
+            blogPosts: [],
+            quizzes: [],
+            resources: [],
+            currentQuiz: null,
+            quizAnswers: {},
+            aiChatHistory: []
+        };
 
-    // pages
-    const pageRegister = qs('#page-register');
-    const pageLogin = qs('#page-login');
-    const pageDashboard = qs('#page-dashboard');
+        // Initialize Application
+        document.addEventListener('DOMContentLoaded', function() {
+            initNavigation();
+            initEventListeners();
+            loadInitialData();
+            renderCourses();
+            renderBlogPosts();
+            setupAIAssistant();
+            
+            // Check for authenticated user
+            const savedUser = localStorage.getItem('currentUser');
+            if (savedUser) {
+                state.currentUser = JSON.parse(savedUser);
+                updateUIForUser();
+            }
+        });
 
-    // forms
-    const registerForm = qs('#registerForm');
-    const loginForm = qs('#loginForm');
+        // Navigation System
+        function initNavigation() {
+            // Handle navigation clicks
+            document.querySelectorAll('[data-page]').forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const pageId = this.getAttribute('data-page');
+                    navigateTo(pageId);
+                });
+            });
 
-    // member storage helper
-    const STORAGE_KEY = 'sb_union_members_v1';
-    const ADMIN_CREDENTIALS = {username:'admin', password: 'admin123'}; // demo only
+            // Handle login/signup buttons
+            document.getElementById('loginBtn').addEventListener('click', () => navigateTo('login'));
+            document.getElementById('signupBtn').addEventListener('click', () => navigateTo('signup'));
+            document.getElementById('goToLogin').addEventListener('click', (e) => {
+                e.preventDefault();
+                navigateTo('login');
+            });
+            document.getElementById('goToSignup').addEventListener('click', (e) => {
+                e.preventDefault();
+                navigateTo('signup');
+            });
 
-    function loadMembers(){
-      try { return JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]'); } catch(e){return []}
-    }
-    function saveMembers(list){ localStorage.setItem(STORAGE_KEY, JSON.stringify(list)); }
+            // Mobile menu
+            document.getElementById('mobileMenuBtn').addEventListener('click', function() {
+                const nav = document.getElementById('mainNav');
+                nav.classList.toggle('active');
+            });
+        }
 
-    // show/hide pages
-    function showPage(page){ [pageRegister,pageLogin,pageDashboard].forEach(p=>p.style.display='none'); page.style.display='block'; }
+        function navigateTo(pageId) {
+            // Update active nav link
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('data-page') === pageId) {
+                    link.classList.add('active');
+                }
+            });
 
-    // switchers
-    qs('#to-login').addEventListener('click', ()=> showPage(pageLogin));
-    qs('#to-register').addEventListener('click', ()=> showPage(pageRegister));
+            // Hide all pages
+            document.querySelectorAll('.page').forEach(page => {
+                page.classList.remove('active');
+            });
 
-    // seed example
-    qs('#seedData').addEventListener('click', ()=>{
-      const example = [{
-        id: 'SU2025-001', username:'alice', fullname:'Alice Tesfaye', email:'alice@example.com', position:'president', year:'3', faculty:'social', phone:'+251911000001'
-      },{
-        id: 'SU2025-002', username:'kebede', fullname:'Kebede T.', email:'kebede@example.com', position:'finance_head', year:'4', faculty:'business', phone:'+251911000002'
-      }];
-      saveMembers(example);
-      renderMemberList();
-      alert('Example data added');
-    });
+            // Show target page
+            const targetPage = document.getElementById(pageId);
+            if (targetPage) {
+                targetPage.classList.add('active');
+                state.currentPage = pageId;
+                
+                // Close mobile menu
+                document.getElementById('mainNav').classList.remove('active');
+                
+                // Load page-specific content
+                loadPageContent(pageId);
+            }
+        }
 
-    qs('#clearData').addEventListener('click', ()=>{
-      if(confirm('Clear all stored members?')){ localStorage.removeItem(STORAGE_KEY); renderMemberList(); }
-    });
+        function loadPageContent(pageId) {
+            switch(pageId) {
+                case 'courses':
+                    renderCourses();
+                    break;
+                case 'dashboard':
+                    if (!state.currentUser) {
+                        navigateTo('login');
+                        return;
+                    }
+                    renderDashboard();
+                    break;
+                case 'admin':
+                    if (!state.currentUser || state.currentUser.role !== 'admin') {
+                        navigateTo('login');
+                        return;
+                    }
+                    renderAdminDashboard();
+                    break;
+                case 'resources':
+                    renderResources();
+                    break;
+                case 'blog':
+                    renderBlogPosts();
+                    break;
+            }
+        }
 
-    // registration handler
-    registerForm.addEventListener('submit', async (e)=>{
-      e.preventDefault();
-      const members = loadMembers();
-      const data = {
-        memberid: qs('#memberid').value.trim(),
-        username: qs('#username').value.trim(),
-        fullname: qs('#fullname').value.trim(),
-        email: qs('#email').value.trim(),
-        password: qs('#password').value, // plaintext in demo
-        dob: qs('#dob').value,
-        phone: qs('#phone').value.trim(),
-        year: qs('#year').value,
-        faculty: qs('#faculty').value,
-        position: qs('#position').value,
-        emergency: qs('#emergency').value.trim(),
-        photo: await fileToDataUrl(qs('#photo').files[0]),
-        idcard: await fileToDataUrl(qs('#idcard').files[0])
-      };
+        // Event Listeners
+        function initEventListeners() {
+            // Login form
+            document.getElementById('loginForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                const email = document.getElementById('loginEmail').value;
+                const password = document.getElementById('loginPassword').value;
+                loginUser(email, password);
+            });
 
-      // basic validations
-      if(!data.memberid || !data.username || !data.fullname || !data.email || !data.password){ alert('Please fill required fields'); return; }
-      if(data.password !== qs('#confirmpassword').value){ alert('Passwords do not match'); return; }
+            // Signup form
+            document.getElementById('signupForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                const name = document.getElementById('signupName').value;
+                const email = document.getElementById('signupEmail').value;
+                const password = document.getElementById('signupPassword').value;
+                const role = document.getElementById('signupRole').value;
+                registerUser(name, email, password, role);
+            });
 
-      // unique member id/username check
-      if(members.some(m=>m.memberid === data.memberid)){ alert('Member ID already exists'); return; }
-      if(members.some(m=>m.username === data.username)){ alert('Username already taken'); return; }
+            // Contact form
+            document.getElementById('contactForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                const name = document.getElementById('contactName').value;
+                const email = document.getElementById('contactEmail').value;
+                const subject = document.getElementById('contactSubject').value;
+                const message = document.getElementById('contactMessage').value;
+                
+                alert(`Thank you ${name}! Your message has been sent. We'll get back to you soon.`);
+                this.reset();
+            });
 
-      // push and save
-      members.push({
-        id: data.memberid,
-        memberid: data.memberid,
-        username: data.username,
-        fullname: data.fullname,
-        email: data.email,
-        password: data.password,
-        dob: data.dob,
-        phone: data.phone,
-        year: data.year,
-        faculty: data.faculty,
-        position: data.position,
-        emergency: data.emergency,
-        photo: data.photo,
-        idcard: data.idcard,
-        createdAt: new Date().toISOString()
-      });
-      saveMembers(members);
-      alert('Member registered successfully');
-      registerForm.reset();
-      renderMemberList();
-    });
+            // Course filtering
+            document.querySelectorAll('[data-filter]').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const filter = this.getAttribute('data-filter');
+                    filterCourses(filter);
+                });
+            });
 
-    // login handler
-    loginForm.addEventListener('submit', (e)=>{
-      e.preventDefault();
-      const id = qs('#loginid').value.trim();
-      const pass = qs('#loginpass').value;
-      // admin quick check
-      if(id === ADMIN_CREDENTIALS.username && pass === ADMIN_CREDENTIALS.password){
-        sessionStorage.setItem('sb_logged', JSON.stringify({role:'admin', name:'Administrator'}));
-        openDashboard();
-        return;
-      }
+            // Admin controls
+            document.getElementById('manageCoursesBtn').addEventListener('click', () => {
+                document.getElementById('adminCoursesSection').style.display = 'block';
+                document.getElementById('adminUsersSection').style.display = 'none';
+            });
+            
+            document.getElementById('manageUsersBtn').addEventListener('click', () => {
+                document.getElementById('adminCoursesSection').style.display = 'none';
+                document.getElementById('adminUsersSection').style.display = 'block';
+            });
 
-      const members = loadMembers();
-      const user = members.find(m => (m.memberid === id || m.username === id) && m.password === pass);
-      if(!user){ alert('Invalid credentials'); return; }
-      sessionStorage.setItem('sb_logged', JSON.stringify({role:'member', name:user.fullname, memberid:user.memberid}));
-      openDashboard();
-    });
+            // Add course button
+            document.getElementById('addCourseBtn')?.addEventListener('click', () => {
+                addNewCourse();
+            });
 
-    // admin quick button
-    qs('#quickAdmin').addEventListener('click', ()=>{
-      qs('#loginid').value = 'admin'; qs('#loginpass').value = 'admin123';
-    });
+            // Dashboard navigation
+            document.querySelectorAll('.dashboard-link').forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const section = this.getAttribute('data-section');
+                    showDashboardSection(section);
+                });
+            });
+        }
 
-    // open dashboard
-    function openDashboard(){
-      showPage(pageDashboard); renderMemberList();
-      const logged = JSON.parse(sessionStorage.getItem('sb_logged') || 'null');
-      qs('#loggedAs').textContent = logged ? (logged.role==='admin'? 'Admin' : logged.name) : '';
-    }
+        // Data Initialization
+        function loadInitialData() {
+            // Sample Courses Data
+            state.courses = [
+                {
+                    id: 1,
+                    title: "Modern JavaScript Mastery",
+                    category: "frontend",
+                    description: "Master JavaScript ES6+ features, async programming, and modern frameworks.",
+                    duration: "8 weeks",
+                    level: "Intermediate",
+                    students: 1250,
+                    rating: 4.8,
+                    lessons: 24,
+                    shortNotes: [
+                        "JavaScript is single-threaded but supports async operations via event loop",
+                        "ES6 introduced let/const, arrow functions, classes, modules, and promises",
+                        "Closures allow functions to access variables from parent scope even after parent function has closed",
+                        "Hoisting moves variable and function declarations to the top of their scope during compilation",
+                        "The 'this' keyword refers to the object that is executing the current function"
+                    ]
+                },
+                {
+                    id: 2,
+                    title: "Python Backend Development",
+                    category: "backend",
+                    description: "Build scalable backend applications with Python, Django, and Flask.",
+                    duration: "10 weeks",
+                    level: "Beginner",
+                    students: 980,
+                    rating: 4.7,
+                    lessons: 30,
+                    shortNotes: [
+                        "Python uses indentation to define code blocks instead of curly braces",
+                        "Django follows the 'batteries-included' philosophy with built-in admin panel and ORM",
+                        "Flask is a microframework that gives developers more flexibility and control",
+                        "WSGI (Web Server Gateway Interface) is the standard for Python web applications",
+                        "Virtual environments are crucial for managing project dependencies"
+                    ]
+                },
+                {
+                    id: 3,
+                    title: "Full-Stack MERN Development",
+                    category: "fullstack",
+                    description: "Complete guide to building applications with MongoDB, Express, React, and Node.js.",
+                    duration: "12 weeks",
+                    level: "Advanced",
+                    students: 750,
+                    rating: 4.9,
+                    lessons: 36,
+                    shortNotes: [
+                        "MERN stack allows JavaScript development for both frontend and backend",
+                        "React uses virtual DOM for efficient updates",
+                        "Node.js is built on Chrome's V8 JavaScript engine",
+                        "Mongoose provides schema-based solution for MongoDB",
+                        "JWT (JSON Web Tokens) are commonly used for authentication"
+                    ]
+                },
+                {
+                    id: 4,
+                    title: "Android App Development with Kotlin",
+                    category: "android",
+                    description: "Create professional Android applications using Kotlin and Android Studio.",
+                    duration: "10 weeks",
+                    level: "Intermediate",
+                    students: 620,
+                    rating: 4.6,
+                    lessons: 28,
+                    shortNotes: [
+                        "Kotlin is fully interoperable with Java and null-safe by design",
+                        "Activities represent single screens in Android apps",
+                        "Fragments are reusable UI components within activities",
+                        "ViewModel preserves UI-related data across configuration changes",
+                        "LiveData is observable data holder class that respects lifecycle"
+                    ]
+                },
+                {
+                    id: 5,
+                    title: "Cybersecurity Fundamentals",
+                    category: "cybersecurity",
+                    description: "Learn essential cybersecurity concepts, tools, and best practices.",
+                    duration: "6 weeks",
+                    level: "Beginner",
+                    students: 890,
+                    rating: 4.8,
+                    lessons: 20,
+                    shortNotes: [
+                        "CIA Triad: Confidentiality, Integrity, Availability - core principles of security",
+                        "Defense in depth uses multiple layers of security controls",
+                        "OWASP Top 10 lists most critical web application security risks",
+                        "Encryption converts data into unreadable format to protect confidentiality",
+                        "Two-factor authentication adds extra layer of security beyond passwords"
+                    ]
+                },
+                {
+                    id: 6,
+                    title: "Advanced React Patterns",
+                    category: "frontend",
+                    description: "Master advanced React concepts including hooks, context, and performance optimization.",
+                    duration: "6 weeks",
+                    level: "Advanced",
+                    students: 540,
+                    rating: 4.9,
+                    lessons: 18,
+                    shortNotes: [
+                        "React Hooks allow using state and lifecycle features in functional components",
+                        "Context API provides way to pass data through component tree without prop drilling",
+                        "React.memo prevents unnecessary re-renders of functional components",
+                        "Custom hooks allow extracting component logic into reusable functions",
+                        "Error boundaries catch JavaScript errors anywhere in their child component tree"
+                    ]
+                }
+            ];
 
-    // logout
-    qs('#logout').addEventListener('click', ()=>{ sessionStorage.removeItem('sb_logged'); showPage(pageLogin); });
+            // Sample Users Data
+            state.users = [
+                { id: 1, name: "Admin User", email: "admin@aigeneration.com", role: "admin", joined: "2024-01-15" },
+                { id: 2, name: "John Doe", email: "john@example.com", role: "student", joined: "2024-02-20" },
+                { id: 3, name: "Jane Smith", email: "jane@example.com", role: "student", joined: "2024-03-10" }
+            ];
 
-    // render members
-    function renderMemberList(){
-      const list = loadMembers();
-      const container = qs('#memberList'); container.innerHTML = '';
-      const query = qs('#search').value.toLowerCase();
-      const filtered = list.filter(m=> !query || [m.fullname,m.memberid,m.username,m.position].some(f=> (f||'').toLowerCase().includes(query)) );
-      if(filtered.length===0){ container.innerHTML = '<div class="muted">No members found.</div>'; return; }
+            // Sample Blog Posts
+            state.blogPosts = [
+                { id: 1, title: "The Future of AI in Education", date: "2024-04-15", category: "AI", excerpt: "How artificial intelligence is transforming learning experiences." },
+                { id: 2, title: "JavaScript Performance Tips", date: "2024-04-10", category: "Frontend", excerpt: "Optimize your JavaScript code for better performance." },
+                { id: 3, title: "Getting Started with Cybersecurity", date: "2024-04-05", category: "Security", excerpt: "Essential first steps for beginners in cybersecurity." }
+            ];
 
-      filtered.forEach(m=>{
-        const it = document.createElement('div'); it.className='member-item';
-        const img = document.createElement('img'); img.className='avatar'; img.src = m.photo || `data:image/svg+xml;utf8,${encodeURIComponent('<svg xmlns=\"http://www.w3.org/2000/svg\" width=56 height=56><rect width=56 height=56 fill=%23eef3ff/></svg>')}`;
-        const meta = document.createElement('div'); meta.className='meta';
-        const h = document.createElement('h4'); h.textContent = m.fullname + ' (' + m.memberid + ')';
-        const p = document.createElement('p'); p.innerHTML = `<span class="badge">${m.position||'Member'}</span> &nbsp; ${m.faculty? '• ' + m.faculty : ''} &nbsp; ${m.year? '• Year ' + m.year : ''}`;
-        meta.appendChild(h); meta.appendChild(p);
+            // Sample Resources
+            state.resources = [
+                { id: 1, title: "HTML5 Cheat Sheet", category: "frontend", type: "pdf", downloads: 1200 },
+                { id: 2, title: "CSS Grid Guide", category: "frontend", type: "pdf", downloads: 980 },
+                { id: 3, title: "JavaScript ES6+ Features", category: "frontend", type: "pdf", downloads: 1500 }
+            ];
 
-        const actions = document.createElement('div');
-        const view = document.createElement('button'); view.className='btn secondary small'; view.textContent='View'; view.style.padding='8px';
-        view.addEventListener('click', ()=> viewMember(m));
-        const del = document.createElement('button'); del.className='btn'; del.style.background='crimson'; del.style.padding='8px'; del.textContent='Delete';
-        del.addEventListener('click', ()=> deleteMember(m.memberid));
-        actions.appendChild(view); actions.appendChild(del);
+            // Sample Quizzes
+            state.quizzes = [
+                {
+                    id: 1,
+                    courseId: 1,
+                    title: "JavaScript Basics Quiz",
+                    questions: [
+                        {
+                            id: 1,
+                            text: "What is the output of: console.log(typeof null)?",
+                            options: ["null", "object", "undefined", "string"],
+                            correct: 1
+                        },
+                        {
+                            id: 2,
+                            text: "Which keyword is used to declare a constant in JavaScript?",
+                            options: ["let", "var", "const", "static"],
+                            correct: 2
+                        },
+                        {
+                            id: 3,
+                            text: "What does 'this' refer to in a regular function?",
+                            options: ["The function itself", "The global object", "The calling object", "Undefined"],
+                            correct: 2
+                        }
+                    ]
+                }
+            ];
+        }
 
-        it.appendChild(img); it.appendChild(meta); it.appendChild(actions);
-        container.appendChild(it);
-      });
-    }
+        // Render Courses
+        function renderCourses() {
+            const coursesGrid = document.getElementById('coursesGrid') || document.getElementById('featuredCourses');
+            if (!coursesGrid) return;
 
-    // view member details
-    function viewMember(m){
-      const lines = [
-        `Full Name: ${m.fullname}`,
-        `Member ID: ${m.memberid}`,
-        `Username: ${m.username}`,
-        `Email: ${m.email}`,
-        `Position: ${m.position}`,
-        `Faculty: ${m.faculty}`,
-        `Year: ${m.year}`,
-        `Phone: ${m.phone}`,
-        `Emergency Contact: ${m.emergency}`,
-        `Registered: ${new Date(m.createdAt).toLocaleString()}`
-      ];
-      const img = m.photo ? `<br/><img src="${m.photo}" style="max-width:160px;border-radius:8px;margin-top:8px"/>` : '';
-      alert(lines.join('\n') + img);
-    }
+            const categoryIcons = {
+                frontend: "fas fa-code",
+                backend: "fas fa-server",
+                fullstack: "fas fa-layer-group",
+                android: "fab fa-android",
+                cybersecurity: "fas fa-shield-alt"
+            };
 
-    // delete
-    function deleteMember(memberid){
-      if(!confirm('Delete member '+memberid+' ?')) return;
-      const list = loadMembers().filter(m=> m.memberid !== memberid);
-      saveMembers(list); renderMemberList();
-    }
+            const coursesToShow = state.currentPage === 'home' 
+                ? state.courses.slice(0, 3) 
+                : state.courses;
 
-    // search
-    qs('#search').addEventListener('input', ()=> renderMemberList());
+            coursesGrid.innerHTML = coursesToShow.map(course => `
+                <div class="course-card" data-id="${course.id}">
+                    <div class="course-img">
+                        <i class="${categoryIcons[course.category] || 'fas fa-laptop-code'}"></i>
+                    </div>
+                    <div class="course-content">
+                        <span class="course-category">${course.category.toUpperCase()}</span>
+                        <h3>${course.title}</h3>
+                        <p>${course.description}</p>
+                        <div style="display: flex; justify-content: space-between; margin-top: 1rem;">
+                            <span><i class="fas fa-clock"></i> ${course.duration}</span>
+                            <span><i class="fas fa-users"></i> ${course.students}</span>
+                            <span><i class="fas fa-star"></i> ${course.rating}</span>
+                        </div>
+                        <button class="btn btn-primary" style="width: 100%; margin-top: 1rem;" onclick="viewCourseDetails(${course.id})">
+                            <i class="fas fa-info-circle"></i> View Details
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+        }
 
-    // export CSV
-    qs('#exportCsv').addEventListener('click', ()=>{
-      const list = loadMembers();
-      if(list.length===0){ alert('No members to export'); return; }
-      const header = ['MemberID','FullName','Username','Email','Position','Faculty','Year','Phone','Emergency','Registered'];
-      const rows = list.map(m=> [m.memberid,m.fullname,m.username,m.email,m.position,m.faculty,m.year,m.phone,m.emergency,m.createdAt]);
-      const csv = [header, ...rows].map(r=> r.map(cell=>`"${String(cell||'').replace(/"/g,'""')}"`).join(',')).join('\n');
-      const blob = new Blob([csv], {type:'text/csv'});
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement('a'); a.href = url; a.download = 'student_union_members.csv'; a.click(); URL.revokeObjectURL(url);
-    });
+        function filterCourses(category) {
+            const coursesGrid = document.getElementById('coursesGrid');
+            if (!coursesGrid) return;
 
-    // file helper
-    function fileToDataUrl(file){
-      return new Promise((res)=>{
-        if(!file) return res('');
-        const reader = new FileReader(); reader.onload = ()=> res(reader.result); reader.readAsDataURL(file);
-      });
-    }
+            let filteredCourses = state.courses;
+            if (category !== 'all') {
+                filteredCourses = state.courses.filter(course => course.category === category);
+            }
 
-    // reset form
-    qs('#resetForm').addEventListener('click', ()=> registerForm.reset());
+            coursesGrid.innerHTML = filteredCourses.map(course => `
+                <div class="course-card" data-id="${course.id}">
+                    <div class="course-img">
+                        <i class="fas fa-laptop-code"></i>
+                    </div>
+                    <div class="course-content">
+                        <span class="course-category">${course.category.toUpperCase()}</span>
+                        <h3>${course.title}</h3>
+                        <p>${course.description}</p>
+                        <button class="btn btn-primary" style="width: 100%; margin-top: 1rem;" onclick="viewCourseDetails(${course.id})">
+                            <i class="fas fa-info-circle"></i> View Details
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+        }
 
-    // initial render
-    renderMemberList();
-    showPage(pageRegister);
-  </script>
+        function viewCourseDetails(courseId) {
+            const course = state.courses.find(c => c.id === courseId);
+            if (!course) return;
+
+            const content = `
+                <div style="max-width: 800px; margin: 0 auto;">
+                    <button class="btn btn-outline" onclick="navigateTo('courses')" style="margin-bottom: 1rem;">
+                        <i class="fas fa-arrow-left"></i> Back to Courses
+                    </button>
+                    
+                    <div class="hero" style="background: linear-gradient(135deg, var(--primary), var(--accent)); text-align: left;">
+                        <h1>${course.title}</h1>
+                        <p>${course.description}</p>
+                        <div style="display: flex; gap: 2rem; margin-top: 1rem;">
+                            <span><i class="fas fa-clock"></i> ${course.duration}</span>
+                            <span><i class="fas fa-signal"></i> ${course.level}</span>
+                            <span><i class="fas fa-users"></i> ${course.students} students</span>
+                            <span><i class="fas fa-star"></i> ${course.rating}/5.0</span>
+                        </div>
+                    </div>
+
+                    <div style="display: flex; gap: 2rem; margin: 2rem 0;">
+                        <button class="btn btn-primary" onclick="enrollInCourse(${course.id})">
+                            <i class="fas fa-plus"></i> Enroll Now
+                        </button>
+                        <button class="btn btn-outline" onclick="startQuiz(${course.id})">
+                            <i class="fas fa-question-circle"></i> Take Quiz
+                        </button>
+                        <button class="btn btn-outline" onclick="downloadCourseMaterials(${course.id})">
+                            <i class="fas fa-download"></i> Download Materials
+                        </button>
+                    </div>
+
+                    <div style="background: white; padding: 2rem; border-radius: var(--radius); margin: 2rem 0;">
+                        <h2>Course Content</h2>
+                        <p>${course.lessons} lessons • ${course.duration}</p>
+                        
+                        <h3 style="margin-top: 2rem;">Short Notes</h3>
+                        <div style="margin-top: 1rem;">
+                            ${course.shortNotes ? course.shortNotes.map((note, index) => `
+                                <div style="background: #f8fafc; padding: 1rem; border-radius: var(--radius); margin-bottom: 0.5rem;">
+                                    <strong>${index + 1}.</strong> ${note}
+                                </div>
+                            `).join('') : ''}
+                        </div>
+                    </div>
+                </div>
+            `;
+
+            document.getElementById('courseDetailsContent').innerHTML = content;
+            navigateTo('course-details');
+        }
+
+        // User Authentication
+        function loginUser(email, password) {
+            // In a real app, this would be an API call
+            if (email === 'admin@aigeneration.com' && password === 'admin123') {
+                state.currentUser = {
+                    id: 1,
+                    name: "Admin User",
+                    email: email,
+                    role: "admin"
+                };
+            } else {
+                state.currentUser = {
+                    id: Date.now(),
+                    name: "Demo User",
+                    email: email,
+                    role: "student"
+                };
+            }
+
+            localStorage.setItem('currentUser', JSON.stringify(state.currentUser));
+            updateUIForUser();
+            navigateTo('dashboard');
+            alert('Login successful!');
+        }
+
+        function registerUser(name, email, password, role) {
+            // In a real app, this would be an API call
+            state.currentUser = {
+                id: Date.now(),
+                name: name,
+                email: email,
+                role: role
+            };
+
+            localStorage.setItem('currentUser', JSON.stringify(state.currentUser));
+            updateUIForUser();
+            navigateTo('dashboard');
+            alert('Registration successful!');
+        }
+
+        function updateUIForUser() {
+            if (state.currentUser) {
+                document.getElementById('loginBtn').style.display = 'none';
+                document.getElementById('signupBtn').style.display = 'none';
+                
+                // Update nav for user
+                const nav = document.getElementById('mainNav');
+                nav.innerHTML = `
+                    <a href="#home" class="nav-link active" data-page="home">Home</a>
+                    <a href="#courses" class="nav-link" data-page="courses">Courses</a>
+                    <a href="#resources" class="nav-link" data-page="resources">Resources</a>
+                    <a href="#blog" class="nav-link" data-page="blog">Blog</a>
+                    <a href="#dashboard" class="nav-link" data-page="dashboard">Dashboard</a>
+                    ${state.currentUser.role === 'admin' ? '<a href="#admin" class="nav-link" data-page="admin">Admin</a>' : ''}
+                    <a href="#" class="nav-link" id="logoutBtn">Logout</a>
+                `;
+                
+                // Reattach event listeners
+                document.querySelectorAll('.nav-link').forEach(link => {
+                    if (link.id !== 'logoutBtn') {
+                        link.addEventListener('click', function(e) {
+                            e.preventDefault();
+                            const pageId = this.getAttribute('data-page');
+                            navigateTo(pageId);
+                        });
+                    }
+                });
+                
+                document.getElementById('logoutBtn').addEventListener('click', logoutUser);
+            }
+        }
+
+        function logoutUser() {
+            state.currentUser = null;
+            localStorage.removeItem('currentUser');
+            location.reload();
+        }
+
+        // Dashboard Functions
+        function renderDashboard() {
+            // Update user name
+            if (state.currentUser) {
+                document.getElementById('userName').textContent = state.currentUser.name;
+            }
+
+            // Update stats
+            document.getElementById('enrolledCourses').textContent = '3';
+            document.getElementById('completedQuizzes').textContent = '5';
+            document.getElementById('downloads').textContent = '12';
+
+            // Render enrolled courses
+            const enrolledCourses = state.courses.slice(0, 2);
+            document.getElementById('myCoursesList').innerHTML = enrolledCourses.map(course => `
+                <div class="course-card" style="margin-bottom: 1rem;">
+                    <div class="course-content">
+                        <h3>${course.title}</h3>
+                        <p>${course.description}</p>
+                        <div style="margin-top: 1rem;">
+                            <div style="background: #e2e8f0; height: 8px; border-radius: 4px;">
+                                <div style="background: var(--primary); width: 60%; height: 100%; border-radius: 4px;"></div>
+                            </div>
+                            <div style="display: flex; justify-content: space-between; margin-top: 0.5rem;">
+                                <span>60% Complete</span>
+                                <button class="btn btn-primary btn-sm" onclick="viewCourseDetails(${course.id})">
+                                    Continue
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+
+            // Render quizzes
+            document.getElementById('quizList').innerHTML = state.quizzes.map(quiz => `
+                <div style="background: white; padding: 1rem; border-radius: var(--radius); margin-bottom: 1rem; box-shadow: var(--shadow);">
+                    <h3>${quiz.title}</h3>
+                    <p>${quiz.questions.length} questions</p>
+                    <button class="btn btn-primary" onclick="startQuiz(${quiz.courseId})">
+                        <i class="fas fa-play"></i> Start Quiz
+                    </button>
+                </div>
+            `).join('');
+        }
+
+        function showDashboardSection(section) {
+            // Update active link
+            document.querySelectorAll('.dashboard-link').forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('data-section') === section) {
+                    link.classList.add('active');
+                }
+            });
+
+            // Show section
+            document.querySelectorAll('.dashboard-section').forEach(sectionEl => {
+                sectionEl.classList.remove('active');
+            });
+            
+            document.getElementById(`dashboard${section.charAt(0).toUpperCase() + section.slice(1)}`).classList.add('active');
+        }
+
+        // Quiz System
+        function startQuiz(courseId) {
+            const quiz = state.quizzes.find(q => q.courseId === courseId);
+            if (!quiz) {
+                alert('No quiz available for this course yet.');
+                return;
+            }
+
+            state.currentQuiz = quiz;
+            state.quizAnswers = {};
+
+            const quizHTML = `
+                <div style="max-width: 800px; margin: 0 auto;">
+                    <h2>${quiz.title}</h2>
+                    <p>Answer all questions. Click submit when done.</p>
+                    
+                    <div id="quizQuestionsContainer">
+                        ${quiz.questions.map((q, qIndex) => `
+                            <div class="question">
+                                <h3>Question ${qIndex + 1}: ${q.text}</h3>
+                                <div class="options">
+                                    ${q.options.map((option, oIndex) => `
+                                        <div class="option" onclick="selectAnswer(${q.id}, ${oIndex})" id="option_${q.id}_${oIndex}">
+                                            ${String.fromCharCode(65 + oIndex)}. ${option}
+                                        </div>
+                                    `).join('')}
+                                </div>
+                            </div>
+                        `).join('')}
+                    </div>
+                    
+                    <button class="btn btn-primary" onclick="submitQuiz()" style="margin-top: 2rem;">
+                        <i class="fas fa-paper-plane"></i> Submit Quiz
+                    </button>
+                </div>
+            `;
+
+            if (state.currentPage === 'course-details') {
+                document.getElementById('courseDetailsContent').innerHTML += quizHTML;
+            } else {
+                const container = document.createElement('div');
+                container.innerHTML = quizHTML;
+                document.querySelector('main').appendChild(container);
+            }
+        }
+
+        function selectAnswer(questionId, optionIndex) {
+            state.quizAnswers[questionId] = optionIndex;
+            
+            // Update UI
+            document.querySelectorAll(`[id^="option_${questionId}_"]`).forEach(opt => {
+                opt.classList.remove('selected');
+            });
+            document.getElementById(`option_${questionId}_${optionIndex}`).classList.add('selected');
+        }
+
+        function submitQuiz() {
+            if (!state.currentQuiz) return;
+
+            let score = 0;
+            state.currentQuiz.questions.forEach(q => {
+                if (state.quizAnswers[q.id] === q.correct) {
+                    score++;
+                }
+            });
+
+            const percentage = (score / state.currentQuiz.questions.length) * 100;
+            alert(`Quiz submitted! You scored ${score}/${state.currentQuiz.questions.length} (${percentage.toFixed(1)}%)`);
+            
+            if (percentage >= 70) {
+                alert('Congratulations! You passed the quiz!');
+            } else {
+                alert('Keep practicing! You can retake the quiz to improve your score.');
+            }
+        }
+
+        // Admin Functions
+        function renderAdminDashboard() {
+            // Render courses table
+            const coursesTableBody = document.getElementById('coursesTableBody');
+            coursesTableBody.innerHTML = state.courses.map(course => `
+                <tr>
+                    <td>${course.id}</td>
+                    <td>${course.title}</td>
+                    <td>${course.category}</td>
+                    <td>${course.students}</td>
+                    <td><span style="color: var(--success);">Active</span></td>
+                    <td>
+                        <button class="btn btn-outline btn-sm" onclick="editCourse(${course.id})">
+                            <i class="fas fa-edit"></i>
+                        </button>
+                        <button class="btn btn-danger btn-sm" onclick="deleteCourse(${course.id})">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </td>
+                </tr>
+            `).join('');
+
+            // Render users table
+            const usersTableBody = document.getElementById('usersTableBody');
+            usersTableBody.innerHTML = state.users.map(user => `
+                <tr>
+                    <td>${user.id}</td>
+                    <td>${user.name}</td>
+                    <td>${user.email}</td>
+                    <td>${user.role}</td>
+                    <td>${user.joined}</td>
+                    <td><span style="color: var(--success);">Active</span></td>
+                </tr>
+            `).join('');
+        }
+
+        function addNewCourse() {
+            const title = prompt('Enter course title:');
+            if (!title) return;
+
+            const category = prompt('Enter category (frontend/backend/fullstack/android/cybersecurity):');
+            if (!category) return;
+
+            const newCourse = {
+                id: state.courses.length + 1,
+                title: title,
+                category: category,
+                description: "New course description",
+                duration: "6 weeks",
+                level: "Beginner",
+                students: 0,
+                rating: 0,
+                lessons: 12,
+                shortNotes: []
+            };
+
+            state.courses.push(newCourse);
+            renderAdminDashboard();
+            alert('Course added successfully!');
+        }
+
+        function editCourse(courseId) {
+            const course = state.courses.find(c => c.id === courseId);
+            if (!course) return;
+
+            const newTitle = prompt('Enter new title:', course.title);
+            if (newTitle) {
+                course.title = newTitle;
+                renderAdminDashboard();
+                alert('Course updated!');
+            }
+        }
+
+        function deleteCourse(courseId) {
+            if (confirm('Are you sure you want to delete this course?')) {
+                state.courses = state.courses.filter(c => c.id !== courseId);
+                renderAdminDashboard();
+                alert('Course deleted!');
+            }
+        }
+
+        // Resources
+        function renderResources() {
+            const container = document.getElementById('frontendResources');
+            if (!container) return;
+
+            container.innerHTML = state.resources.map(resource => `
+                <div style="background: white; padding: 1rem; border-radius: var(--radius); margin-bottom: 1rem; display: flex; justify-content: space-between; align-items: center;">
+                    <div>
+                        <h4>${resource.title}</h4>
+                        <p>${resource.category} • ${resource.type.toUpperCase()} • ${resource.downloads} downloads</p>
+                    </div>
+                    <button class="btn btn-primary" onclick="downloadResource(${resource.id})">
+                        <i class="fas fa-download"></i> Download
+                    </button>
+                </div>
+            `).join('');
+        }
+
+        function downloadResource(resourceId) {
+            alert('Resource download started!');
+            // In real app, this would trigger file download
+        }
+
+        function downloadCourseMaterials(courseId) {
+            alert('Course materials downloaded!');
+        }
+
+        // Blog
+        function renderBlogPosts() {
+            const container = document.getElementById('blogPosts');
+            if (!container) return;
+
+            container.innerHTML = state.blogPosts.map(post => `
+                <div class="feature-card">
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 1rem;">
+                        <span style="color: var(--primary); font-weight: 600;">${post.category}</span>
+                        <span style="color: var(--gray);">${post.date}</span>
+                    </div>
+                    <h3>${post.title}</h3>
+                    <p>${post.excerpt}</p>
+                    <button class="btn btn-outline" style="margin-top: 1rem;">
+                        Read More <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+            `).join('');
+        }
+
+        // AI Assistant
+        function setupAIAssistant() {
+            const aiToggle = document.getElementById('aiToggle');
+            const aiChatbox = document.getElementById('aiChatbox');
+            const sendButton = document.getElementById('sendAiMessage');
+            const aiInput = document.getElementById('aiInput');
+
+            aiToggle.addEventListener('click', () => {
+                aiChatbox.classList.toggle('active');
+            });
+
+            sendButton.addEventListener('click', sendAIMessage);
+            aiInput.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') {
+                    sendAIMessage();
+                }
+            });
+
+            // Preload some AI responses
+            state.aiResponses = {
+                "hello": "Hello! I'm your AI learning assistant. How can I help you with your studies today?",
+                "help": "I can help you with: \n1. Course explanations \n2. Code debugging \n3. Study tips \n4. Quiz preparation \n5. Resource recommendations",
+                "javascript": "JavaScript is a versatile programming language used for web development. Key concepts: \n• Variables (let, const) \n• Functions (arrow functions) \n• Async/Await \n• DOM Manipulation \n• ES6+ Features",
+                "python": "Python is great for backend, data science, and AI. Key features: \n• Simple syntax \n• Extensive libraries \n• Django/Flask for web \n• Pandas for data \n• TensorFlow for ML",
+                "react": "React is a JavaScript library for building UIs: \n• Components (functional/class) \n• Props and State \n• Hooks (useState, useEffect) \n• Virtual DOM \n• JSX syntax",
+                "database": "Databases store application data: \n• SQL (MySQL, PostgreSQL) - relational \n• NoSQL (MongoDB) - document-based \n• ORMs for object mapping \n• ACID properties for transactions",
+                "cybersecurity": "Cybersecurity protects systems: \n• Encryption (AES, RSA) \n• Authentication (OAuth, JWT) \n• Firewalls and VPNs \n• Penetration testing \n• Security protocols"
+            };
+        }
+
+        function sendAIMessage() {
+            const input = document.getElementById('aiInput');
+            const message = input.value.trim().toLowerCase();
+            
+            if (!message) return;
+
+            // Add user message
+            addAIMessage(message, 'user');
+            input.value = '';
+
+            // Generate AI response
+            setTimeout(() => {
+                let response = "I understand you're asking about \"" + message + "\". ";
+                
+                // Check for keywords
+                if (message.includes('javascript')) {
+                    response = state.aiResponses['javascript'];
+                } else if (message.includes('python')) {
+                    response = state.aiResponses['python'];
+                } else if (message.includes('react')) {
+                    response = state.aiResponses['react'];
+                } else if (message.includes('database') || message.includes('sql')) {
+                    response = state.aiResponses['database'];
+                } else if (message.includes('security') || message.includes('cyber')) {
+                    response = state.aiResponses['cybersecurity'];
+                } else if (message.includes('hello') || message.includes('hi')) {
+                    response = state.aiResponses['hello'];
+                } else if (message.includes('help')) {
+                    response = state.aiResponses['help'];
+                } else {
+                    response += "For detailed explanations, please refer to our course materials or ask specific questions about programming concepts, frameworks, or tools.";
+                }
+
+                addAIMessage(response, 'ai');
+            }, 1000);
+        }
+
+        function addAIMessage(text, sender) {
+            const messagesContainer = document.getElementById('aiMessages');
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `message ${sender}-message`;
+            messageDiv.textContent = text;
+            messagesContainer.appendChild(messageDiv);
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+            
+            // Store in history
+            state.aiChatHistory.push({ sender, text, timestamp: new Date() });
+        }
+
+        // Utility Functions
+        function enrollInCourse(courseId) {
+            if (!state.currentUser) {
+                alert('Please login to enroll in courses.');
+                navigateTo('login');
+                return;
+            }
+            alert('Successfully enrolled in the course!');
+        }
+
+        // Make functions available globally
+        window.navigateTo = navigateTo;
+        window.viewCourseDetails = viewCourseDetails;
+        window.enrollInCourse = enrollInCourse;
+        window.startQuiz = startQuiz;
+        window.selectAnswer = selectAnswer;
+        window.submitQuiz = submitQuiz;
+        window.downloadResource = downloadResource;
+        window.downloadCourseMaterials = downloadCourseMaterials;
+        window.editCourse = editCourse;
+        window.deleteCourse = deleteCourse;
+    </script>
 </body>
 </html>
-
